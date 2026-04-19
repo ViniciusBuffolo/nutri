@@ -678,7 +678,7 @@
   background-image: url("/background-home.svg");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: auto 100%;
+  background-size: cover;
   opacity: 0.18;
   pointer-events: none;
   z-index: 0;

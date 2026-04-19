@@ -4,17 +4,17 @@ import styles from "@/app/page.module.css";
 export default function BottomNav() {
   return (
     <nav className={styles.bottomNav}>
-      <button className={styles.navItem}>
-        <span>📘</span>
-        <small>Diary</small>
-      </button>
+      <Link href="/calculator" className={styles.navItem}>
+        <span>🔢</span>
+        <small>Calculadora</small>
+      </Link>
 
       <button className={styles.navItem}>
         <span>👤</span>
         <small>Me</small>
       </button>
 
-      <Link href="/bmi" className={`${styles.navItem} ${styles.navCenter}`}>
+      <Link href="#" className={`${styles.navItem} ${styles.navCenter}`}>
         <span>＋</span>
       </Link>
 

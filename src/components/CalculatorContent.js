@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from "react";
 import styles from "@/app/page.module.css";
-import BmiFormCard from "../bmi/BmiFormCard";
-import BmiGauge from "../bmi/BmiGauge";
-import BmiResultCard from "../bmi/BmiResultCard";
+import BmiFormCard from "./bmi/BmiFormCard";
+import BmiGauge from "./bmi/BmiGauge";
+import BmiResultCard from "./bmi/BmiResultCard";
 import { buildBmiResult } from "@/utils/healthCalculator";
 
-export default function HomeContent() {
+export default function CalculatorContent() {
   const [form, setForm] = useState({
     weight: "",
     height: "",
