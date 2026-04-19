@@ -14,7 +14,7 @@ export default function BottomNav() {
         <small>Me</small>
       </button>
 
-      <Link href="/calc" className={`${styles.navItem} ${styles.navCenter}`}>
+      <Link href="/bmi" className={`${styles.navItem} ${styles.navCenter}`}>
         <span>＋</span>
       </Link>
 
