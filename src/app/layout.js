@@ -13,12 +13,15 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "App de Nutrição",
-  description: "Calculadora simples de IMC",
+  description: "Sistema simples de nutrição e cálculo de IMC",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+    >
       <body>{children}</body>
     </html>
   );
