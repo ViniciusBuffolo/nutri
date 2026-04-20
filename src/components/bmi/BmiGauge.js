@@ -152,7 +152,6 @@ function getGaugeConfig(result) {
   const value = Number.isFinite(rawValue) && rawValue > 0 ? rawValue : 0;
   const group = result?.group || "adult";
   const tone = result?.tone || "normal";
-  const label = result?.label || "Sem resultado";
   const badgeColor = result?.color || "#98d11a";
 
   const minValue = 10;
@@ -177,8 +176,6 @@ function getGaugeConfig(result) {
     value,
     minValue,
     maxValue,
-    label,
-    badgeColor,
     pointerColor,
     subArcs,
     ticks,
@@ -186,28 +183,8 @@ function getGaugeConfig(result) {
 }
 
 export default function BmiGauge({ result }) {
-  const {
-    value,
-    minValue,
-    maxValue,
-    label,
-    badgeColor,
-    pointerColor,
-    subArcs,
-    ticks,
-  } = getGaugeConfig(result);
-
-  const title =
-    result?.group === "child"
-      ? "IMC infantil"
-      : result?.group === "older"
-      ? "IMC idoso"
-      : "IMC";
-
-  const subtitle =
-    result?.group === "child"
-      ? "Leitura visual do IMC. A classificação infantil depende de idade e sexo."
-      : "Leitura visual do seu índice de massa corporal.";
+  const { value, minValue, maxValue, pointerColor, subArcs, ticks } =
+    getGaugeConfig(result);
 
   const gaugeKey = JSON.stringify({
     group: result?.group || "adult",
@@ -224,117 +201,59 @@ export default function BmiGauge({ result }) {
   return (
     <div
       style={{
-        background: "#ffffff",
-        borderRadius: "20px",
-        padding: "20px",
-        boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-        border: "1px solid #e5e7eb",
         width: "100%",
+        maxWidth: "420px",
+        margin: "0 auto",
       }}
     >
-      <div style={{ marginBottom: "8px" }}>
-        <h3
-          style={{
-            margin: 0,
-            fontSize: "1rem",
-            fontWeight: 700,
-            color: "#2f3133",
-          }}
-        >
-          {title}
-        </h3>
-
-        <p
-          style={{
-            margin: "6px 0 0",
-            fontSize: "0.9rem",
-            color: "#7a7d81",
-            lineHeight: 1.45,
-          }}
-        >
-          {subtitle}
-        </p>
-      </div>
-
-      <div
-        style={{
-          maxWidth: "420px",
-          margin: "0 auto",
+      <GaugeComponent
+        key={gaugeKey}
+        type="semicircle"
+        value={value}
+        minValue={minValue}
+        maxValue={maxValue}
+        arc={{
+          width: 0.35,
+          padding: 0,
+          cornerRadius: 0,
+          subArcs,
         }}
-      >
-        <GaugeComponent
-          key={gaugeKey}
-          type="semicircle"
-          value={value}
-          minValue={minValue}
-          maxValue={maxValue}
-          arc={{
-            width: 0.35,
-            padding: 0,
-            cornerRadius: 0,
-            subArcs,
-          }}
-          pointer={{
-            type: "needle",
-            color: pointerColor,
-            length: 0.62,
-            width: 7,
-            elastic: false,
-          }}
-          labels={{
-            valueLabel: {
-              formatTextValue: (currentValue) =>
-                `${Number(currentValue).toFixed(1)}`,
+        pointer={{
+          type: "needle",
+          color: pointerColor,
+          length: 0.62,
+          width: 7,
+          elastic: false,
+        }}
+        labels={{
+          valueLabel: {
+            formatTextValue: (currentValue) =>
+              `${Number(currentValue).toFixed(1)}`,
+            style: {
+              fontSize: "26px",
+              fill: "#2f3133",
+              fontWeight: "700",
+            },
+          },
+          tickLabels: {
+            type: "outer",
+            ticks,
+            defaultTickValueConfig: {
+              formatTextValue: (tickValue) => `${tickValue}`,
               style: {
-                fontSize: "26px",
-                fill: "#2f3133",
-                fontWeight: "700",
+                fontSize: "11px",
+                fill: "#7a7d81",
               },
             },
-            tickLabels: {
-              type: "outer",
-              ticks,
-              defaultTickValueConfig: {
-                formatTextValue: (tickValue) => `${tickValue}`,
-                style: {
-                  fontSize: "11px",
-                  fill: "#7a7d81",
-                },
-              },
-              defaultTickLineConfig: {
-                color: "#b8bec6",
-                length: 6,
-                width: 1,
-                distanceFromArc: 3,
-              },
+            defaultTickLineConfig: {
+              color: "#b8bec6",
+              length: 6,
+              width: 1,
+              distanceFromArc: 3,
             },
-          }}
-        />
-      </div>
-
-      {result?.label ? (
-        <div
-          style={{
-            marginTop: "6px",
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <div
-            style={{
-              background: `${badgeColor}22`,
-              color: "#2f3133",
-              border: `1px solid ${badgeColor}44`,
-              borderRadius: "999px",
-              padding: "8px 14px",
-              fontSize: "0.9rem",
-              fontWeight: 600,
-            }}
-          >
-            {label}
-          </div>
-        </div>
-      ) : null}
+          },
+        }}
+      />
     </div>
   );
 }

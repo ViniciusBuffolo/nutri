@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "@/app/page.module.css";
+import BmiGauge from "./BmiGauge";
 
 function getToneClass(tone) {
   switch (tone) {
@@ -26,7 +27,7 @@ export default function BmiResultCard({ result }) {
 
   return (
     <div className={`${styles.bmiResultCard} ${resultToneClass}`}>
-      <p className={styles.bmiEyebrow}>Resultado</p>
+      <p className={styles.bmiEyebrow}>Resultado de IMC</p>
 
       {result ? (
         <>
@@ -48,6 +49,8 @@ export default function BmiResultCard({ result }) {
               <h2 className={styles.bmiResultTitle}>{result.label}</h2>
             </div>
           </div>
+
+          <BmiGauge result={result} />
 
           <p className={styles.bmiResultText}>{result.shortText}</p>
           <p className={styles.bmiHelperText}>{result.helperText}</p>

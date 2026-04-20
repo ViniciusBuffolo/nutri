@@ -713,3 +713,41 @@
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
   margin: 0;
 }
+
+.calculatorSection {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.calculatorSection + .calculatorSection {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.calculatorSectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calculatorSectionTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.calculatorSectionText {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.bmiResultsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
