@@ -145,7 +145,7 @@ export default function SkinfoldsForm({
             ))}
           </div>
 
-          <div className={styles.bmiActions}>
+          {/* <div className={styles.bmiActions}>
             <button
               type="button"
               className={styles.bmiSecondaryButton}
@@ -153,7 +153,7 @@ export default function SkinfoldsForm({
             >
               Limpar Dobras
             </button>
-          </div>
+          </div> */}
         </>
       ) : (
         <p className={styles.bmiHelperText}>

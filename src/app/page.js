@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 import TopCanvas from "@/components/TopCanvas";
 import TopBar from "@/components/TopBar";
 import BottomNav from "@/components/BottomNav";
-import { macroItems } from "@/data/homeData";
+import { nutritionSummary } from "@/data/homeData";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(true);
@@ -25,7 +25,7 @@ export default function Home() {
       <TopCanvas
         isOpen={isOpen}
         closeCanvas={closeCanvas}
-        macroItems={macroItems}
+        nutritionSummary={nutritionSummary}
       />
 
       <section

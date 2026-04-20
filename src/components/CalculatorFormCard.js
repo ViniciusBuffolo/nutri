@@ -80,7 +80,7 @@ export default function CalculatorFormCard({
           </label>
         </div>
 
-        <div className={styles.bmiActions}>
+        {/* <div className={styles.bmiActions}>
           <button
             type="button"
             className={styles.bmiSecondaryButton}
@@ -88,7 +88,7 @@ export default function CalculatorFormCard({
           >
             Limpar IMC
           </button>
-        </div>
+        </div> */}
       </div>
 
       <SkinfoldsForm

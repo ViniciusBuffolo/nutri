@@ -5,7 +5,7 @@ import styles from "../page.module.css";
 import TopCanvas from "@/components/TopCanvas";
 import TopBar from "@/components/TopBar";
 import BottomNav from "@/components/BottomNav";
-import { meals, macroItems } from "@/data/homeData";
+import { nutritionSummary } from "@/data/homeData";
 import CalculatorContent from "@/components/CalculatorContent";
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
       <TopCanvas
         isOpen={isOpen}
         closeCanvas={closeCanvas}
-        macroItems={macroItems}
+        nutritionSummary={nutritionSummary}
       />
 
       <section
@@ -32,7 +32,7 @@ export default function Home() {
       >
         {!isOpen && <TopBar onOpen={openCanvas} />}
 
-        <CalculatorContent meals={meals} />
+        <CalculatorContent />
       </section>
 
       <BottomNav />

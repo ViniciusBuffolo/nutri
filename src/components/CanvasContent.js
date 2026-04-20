@@ -1,25 +1,29 @@
 import styles from "@/app/page.module.css";
 
-export default function CanvasContent({ macroItems }) {
+export default function CanvasContent({ nutritionSummary }) {
+  if (!nutritionSummary) return null;
+
+  const { plan, stats, macroItems } = nutritionSummary;
+
   return (
     <>
-      <p className={styles.plan}>CLASSIC</p>
+      <p className={styles.plan}>{plan}</p>
 
       <div className={styles.topStats}>
         <div className={styles.statBox}>
-          <strong>15569</strong>
+          <strong>{stats.eaten}</strong>
           <span>EATEN</span>
         </div>
 
         <div className={styles.circleWrap}>
           <div className={styles.circle}>
-            <strong>12079</strong>
+            <strong>{stats.kcalOver}</strong>
             <span>KCAL OVER</span>
           </div>
         </div>
 
         <div className={styles.statBox}>
-          <strong>993</strong>
+          <strong>{stats.burned}</strong>
           <span>BURNED</span>
         </div>
       </div>

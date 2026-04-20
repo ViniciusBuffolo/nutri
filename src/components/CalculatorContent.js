@@ -8,24 +8,28 @@ import { buildBmiResult } from "@/utils/healthCalculator";
 import { calculateBodyFat } from "@/utils/skinfoldCalculator";
 import CalculatorFormCard from "./CalculatorFormCard";
 
-export default function CalculatorContent() {
-  const [bmiForm, setBmiForm] = useState({
-    weight: "",
-    height: "",
-    age: "",
-    sex: "male",
-  });
+const INITIAL_BMI_FORM = {
+  weight: "",
+  height: "",
+  age: "",
+  sex: "male",
+};
 
-  const [skinfoldsForm, setSkinfoldsForm] = useState({
-    protocol: "3",
-    chest: "",
-    midaxillary: "",
-    triceps: "",
-    subscapular: "",
-    abdomen: "",
-    suprailiac: "",
-    thigh: "",
-  });
+const INITIAL_SKINFOLDS_FORM = {
+  protocol: "3",
+  chest: "",
+  midaxillary: "",
+  triceps: "",
+  subscapular: "",
+  abdomen: "",
+  suprailiac: "",
+  thigh: "",
+};
+
+export default function CalculatorContent() {
+  const [bmiForm, setBmiForm] = useState(INITIAL_BMI_FORM);
+
+  const [skinfoldsForm, setSkinfoldsForm] = useState(INITIAL_SKINFOLDS_FORM);
 
   function handleBmiChange(event) {
     const { name, value } = event.target;
@@ -34,15 +38,6 @@ export default function CalculatorContent() {
       ...current,
       [name]: value,
     }));
-  }
-
-  function clearBmiForm() {
-    setBmiForm({
-      weight: "",
-      height: "",
-      age: "",
-      sex: "male",
-    });
   }
 
   function handleSkinfoldsChange(event) {
@@ -54,17 +49,9 @@ export default function CalculatorContent() {
     }));
   }
 
-  function clearSkinfoldsForm() {
-    setSkinfoldsForm({
-      protocol: "3",
-      chest: "",
-      midaxillary: "",
-      triceps: "",
-      subscapular: "",
-      abdomen: "",
-      suprailiac: "",
-      thigh: "",
-    });
+  function clearAllForms() {
+    setBmiForm(INITIAL_BMI_FORM);
+    setSkinfoldsForm(INITIAL_SKINFOLDS_FORM);
   }
 
   const bmiResult = useMemo(() => {
@@ -86,16 +73,24 @@ export default function CalculatorContent() {
         <CalculatorFormCard
           bmiForm={bmiForm}
           onBmiChange={handleBmiChange}
-          onClearBmi={clearBmiForm}
           skinfoldsForm={skinfoldsForm}
           onSkinfoldsChange={handleSkinfoldsChange}
-          onClearSkinfolds={clearSkinfoldsForm}
         />
 
         <div className={styles.bmiResultsColumn}>
           <BmiResultCard result={bmiResult} />
           <SkinfoldsResultCard result={skinfoldsResult} />
         </div>
+      </div>
+
+      <div className={styles.bmiActions}>
+        <button
+          type="button"
+          className={styles.bmiSecondaryButton}
+          onClick={clearAllForms}
+        >
+          Limpar tudo
+        </button>
       </div>
     </section>
   );
