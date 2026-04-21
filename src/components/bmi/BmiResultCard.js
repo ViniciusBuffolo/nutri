@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "@/app/page.module.css";
-import BmiGauge from "./BmiGauge";
+import BmiGauge from "@/components/bmi/BmiGauge";
 
 function getToneClass(tone) {
   switch (tone) {

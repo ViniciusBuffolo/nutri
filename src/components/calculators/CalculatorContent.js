@@ -2,11 +2,11 @@
 
 import { useMemo, useState } from "react";
 import styles from "@/app/page.module.css";
-import BmiResultCard from "./bmi/BmiResultCard";
-import SkinfoldsResultCard from "./skinfolds/SkinfoldsResultCard";
+import BmiResultCard from "@/components/bmi/BmiResultCard";
+import SkinfoldsResultCard from "@/components/skinfolds/SkinfoldsResultCard";
 import { buildBmiResult } from "@/utils/healthCalculator";
 import { calculateBodyFat } from "@/utils/skinfoldCalculator";
-import CalculatorFormCard from "./CalculatorFormCard";
+import CalculatorFormCard from "@/components/calculators/CalculatorFormCard";
 
 const INITIAL_BMI_FORM = {
   weight: "",

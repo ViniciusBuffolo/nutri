@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./page.module.css";
-import TopCanvas from "@/components/TopCanvas";
-import TopBar from "@/components/TopBar";
-import BottomNav from "@/components/BottomNav";
+import styles from "@/app/page.module.css";
+import TopCanvas from "@/components/layout/TopCanvas";
+import TopBar from "@/components/layout/TopBar";
+import BottomNav from "@/components/layout/BottomNav";
 import { nutritionSummary } from "@/data/homeData";
 
 export default function Home() {

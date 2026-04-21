@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "@/app/page.module.css";
-import SkinfoldsForm from "./skinfolds/SkinfoldsForm";
+import SkinfoldsForm from "@/components/skinfolds/SkinfoldsForm";
 
 export default function CalculatorFormCard({
   bmiForm,
