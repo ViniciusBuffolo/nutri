@@ -4,29 +4,29 @@ import styles from "@/app/page.module.css";
 export default function BottomNav() {
   return (
     <nav className={styles.bottomNav}>
-      <Link href="/calculator" className={styles.navItem}>
+      <Link href="/evaluations" className={styles.navItem}>
         <span>🔢</span>
-        <small>Calculadora</small>
+        <small>Avaliações</small>
       </Link>
 
-      <button className={styles.navItem}>
+      <Link href="/profile" className={styles.navItem}>
         <span>👤</span>
-        <small>Me</small>
-      </button>
+        <small>Perfil</small>
+      </Link>
 
-      <Link href="#" className={`${styles.navItem} ${styles.navCenter}`}>
+      <Link href="/dashboard" className={`${styles.navItem} ${styles.navCenter}`}>
         <span>＋</span>
       </Link>
 
-      <button className={styles.navItem}>
-        <span>📋</span>
-        <small>Plans</small>
-      </button>
+      <Link href="/appointments" className={styles.navItem}>
+        <span>📅</span>
+        <small>Agenda</small>
+      </Link>
 
-      <button className={styles.navItem}>
-        <span>👨‍🍳</span>
-        <small>Recipes</small>
-      </button>
+      <Link href="/patients" className={styles.navItem}>
+        <span>🧑‍⚕️</span>
+        <small>Pacientes</small>
+      </Link>
     </nav>
   );
 }

@@ -1,0 +1,118 @@
+src/
+  app/
+    page.js
+    layout.js
+    globals.css
+    favicon.ico
+    page.module.css
+
+    login/
+      page.js
+
+    dashboard/
+      page.js
+
+    patients/
+      page.js
+      [id]/
+        page.js
+        evaluation/
+          page.js
+        history/
+          page.js
+        plan/
+          page.js
+
+    evaluations/
+      page.js
+      bmi/
+        page.js
+      skinfolds/
+        page.js
+
+    appointments/
+      page.js
+
+    profile/
+      page.js
+
+    settings/
+      page.js
+
+  components/
+    layout/
+      BottomNav.js
+      CanvasContent.js
+      TopBar.js
+      TopCanvas.js
+
+    shared/
+      Badge.js
+      Button.js
+      Card.js
+      EmptyState.js
+      SectionTitle.js
+      StatCard.js
+
+    auth/
+      LoginForm.js
+
+    dashboard/
+      DashboardContent.js
+      QuickActions.js
+      TodaySummary.js
+
+    patients/
+      PatientCard.js
+      PatientInfoCard.js
+      PatientList.js
+      PatientProfileHeader.js
+
+    evaluations/
+      EvaluationSummaryCard.js
+      EvaluationTabs.js
+
+    bmi/
+      BmiForm.js
+      BmiGauge.js
+      BmiGaugeCard.js
+      BmiResultCard.js
+
+    skinfolds/
+      SkinfoldsForm.js
+      SkinfoldsResultCard.js
+
+    plans/
+      MealList.js
+      MealPlanCard.js
+
+    appointments/
+      AppointmentCard.js
+      AppointmentList.js
+
+    home/
+      HomeContent.js
+      MealCard.js
+
+  data/
+    appointments.js
+    bmiData.js
+    dashboardData.js
+    evaluations.js
+    homeData.js
+    mealPlans.js
+    navigation.js
+    patients.js
+    skinfoldData.js
+    users.js
+
+  lib/
+    auth.js
+    constants.js
+    formatters.js
+
+  utils/
+    date.js
+    healthCalculator.js
+    patient.js
+    skinfoldCalculator.js

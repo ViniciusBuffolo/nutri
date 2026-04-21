@@ -108,58 +108,73 @@ export default function SkinfoldsForm({
   const config = getProtocolConfig(age, sex, form.protocol);
 
   return (
-    <div className={styles.calculatorSection}>
-      <div className={styles.calculatorSectionHeader}>
-        <h2 className={styles.calculatorSectionTitle}>{config.title}</h2>
-        <p className={styles.calculatorSectionText}>{config.description}</p>
+    <div className={styles.bmiCard}>
+      <div className={styles.bmiHeader}>
+        <div>
+          <p className={styles.bmiEyebrow}>Health</p>
+          <h1 className={styles.bmiTitle}>Dobras Cutâneas</h1>
+          <p className={styles.bmiSubtitle}>
+            Informe as medidas do protocolo para estimar o percentual de gordura
+            corporal.
+          </p>
+        </div>
       </div>
 
-      {config.allowProtocolChoice && (
-        <div className={styles.bmiGrid}>
-          <label className={styles.bmiField}>
-            <span>Protocolo</span>
-            <select name="protocol" value={form.protocol} onChange={onChange}>
-              <option value="3">3 dobras</option>
-              <option value="7">7 dobras</option>
-            </select>
-          </label>
+      <div className={styles.calculatorSection}>
+        <div className={styles.calculatorSectionHeader}>
+          <h2 className={styles.calculatorSectionTitle}>{config.title}</h2>
+          <p className={styles.calculatorSectionText}>{config.description}</p>
         </div>
-      )}
 
-      {config.fields.length > 0 ? (
-        <>
+        {config.allowProtocolChoice && (
           <div className={styles.bmiGrid}>
-            {config.fields.map((field) => (
-              <label key={field.name} className={styles.bmiField}>
-                <span>{field.label}</span>
-                <input
-                  type="number"
-                  name={field.name}
-                  placeholder={field.placeholder}
-                  value={form[field.name] || ""}
-                  onChange={onChange}
-                  min="0"
-                  step="0.1"
-                />
-              </label>
-            ))}
+            <label className={styles.bmiField}>
+              <span>Protocolo</span>
+              <select name="protocol" value={form.protocol} onChange={onChange}>
+                <option value="3">3 dobras</option>
+                <option value="7">7 dobras</option>
+              </select>
+            </label>
           </div>
+        )}
 
-          {/* <div className={styles.bmiActions}>
-            <button
-              type="button"
-              className={styles.bmiSecondaryButton}
-              onClick={onClear}
-            >
-              Limpar Dobras
-            </button>
-          </div> */}
-        </>
-      ) : (
-        <p className={styles.bmiHelperText}>
-          Primeiro preencha idade e sexo na calculadora principal.
-        </p>
-      )}
+        {config.fields.length > 0 ? (
+          <>
+            <div className={styles.bmiGrid}>
+              {config.fields.map((field) => (
+                <label key={field.name} className={styles.bmiField}>
+                  <span>{field.label}</span>
+                  <input
+                    type="number"
+                    name={field.name}
+                    placeholder={field.placeholder}
+                    value={form[field.name] || ""}
+                    onChange={onChange}
+                    min="0"
+                    step="0.1"
+                  />
+                </label>
+              ))}
+            </div>
+
+            {onClear ? (
+              <div className={styles.bmiActions}>
+                <button
+                  type="button"
+                  className={styles.bmiSecondaryButton}
+                  onClick={onClear}
+                >
+                  Limpar Dobras
+                </button>
+              </div>
+            ) : null}
+          </>
+        ) : (
+          <p className={styles.bmiHelperText}>
+            Primeiro preencha idade e sexo na tela de avaliação.
+          </p>
+        )}
+      </div>
     </div>
   );
 }

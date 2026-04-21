@@ -95,12 +95,7 @@ function getOlderArcs() {
 }
 
 function getOlderTicks(maxValue) {
-  return [
-    { value: 10 },
-    { value: 22 },
-    { value: 27 },
-    { value: maxValue },
-  ];
+  return [{ value: 10 }, { value: 22 }, { value: 27 }, { value: maxValue }];
 }
 
 function getChildArcs(maxValue) {
