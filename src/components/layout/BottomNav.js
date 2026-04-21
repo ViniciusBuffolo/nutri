@@ -5,28 +5,28 @@ export default function BottomNav() {
   return (
     <nav className={styles.bottomNav}>
       <Link href="/evaluations" className={styles.navItem}>
-        <span>🔢</span>
-        <small>Avaliações</small>
+        <span>📊</span>
+        <small>Evaluations</small>
       </Link>
 
-      <Link href="/profile" className={styles.navItem}>
+      <button className={styles.navItem}>
         <span>👤</span>
-        <small>Perfil</small>
-      </Link>
+        <small>Me</small>
+      </button>
 
-      <Link href="/dashboard" className={`${styles.navItem} ${styles.navCenter}`}>
+      <Link href="#" className={`${styles.navItem} ${styles.navCenter}`}>
         <span>＋</span>
       </Link>
 
-      <Link href="/appointments" className={styles.navItem}>
-        <span>📅</span>
-        <small>Agenda</small>
-      </Link>
+      <button className={styles.navItem}>
+        <span>📋</span>
+        <small>Plans</small>
+      </button>
 
-      <Link href="/patients" className={styles.navItem}>
-        <span>🧑‍⚕️</span>
-        <small>Pacientes</small>
-      </Link>
+      <button className={styles.navItem}>
+        <span>👨‍🍳</span>
+        <small>Recipes</small>
+      </button>
     </nav>
   );
 }

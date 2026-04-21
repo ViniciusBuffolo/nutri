@@ -750,3 +750,163 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.loginPageContent {
+  position: relative;
+  z-index: 10;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 110px;
+}
+
+.loginCard {
+  padding: 20px;
+}
+
+.loginHeader {
+  margin-bottom: 18px;
+}
+
+.loginTitle {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.loginSubtitle {
+  text-align: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.loginFields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.loginField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.loginField span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.loginField input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--input-bg);
+  color: var(--foreground);
+  outline: none;
+}
+
+.loginField input::placeholder {
+  color: var(--muted);
+}
+
+.loginPasswordWrap {
+  position: relative;
+}
+
+.loginPasswordWrap input {
+  padding-right: 42px;
+}
+
+.loginPasswordToggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.loginRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.loginLinkButton {
+  background: transparent;
+  color: var(--primary-strong);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.loginActions {
+  display: flex;
+}
+
+.loginPrimaryButton {
+  width: 100%;
+  min-height: 46px;
+  border-radius: 999px;
+}
+
+.loginDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginDividerText {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.loginSocialRow {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.loginSocialButton {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: var(--primary-strong);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.loginFooterText {
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.loginFooterLink {
+  background: transparent;
+  color: var(--primary-strong);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.loginError {
+  font-size: 0.9rem;
+  color: var(--danger);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .loginCard {
+    padding: 18px;
+  }
+}
