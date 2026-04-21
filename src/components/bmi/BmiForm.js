@@ -1,19 +1,22 @@
 "use client";
 
 import styles from "@/app/page.module.css";
+import Card from "@/components/shared/Card";
+import Button from "@/components/shared/Button";
+import SectionTitle from "@/components/shared/SectionTitle";
 
 export default function BmiForm({ form, onChange, onClear }) {
   return (
-    <div className={styles.bmiCard}>
+    <Card className={styles.bmiCard}>
       <div className={styles.bmiHeader}>
-        <div>
-          <p className={styles.bmiEyebrow}>Health</p>
-          <h1 className={styles.bmiTitle}>Calculadora de IMC</h1>
-          <p className={styles.bmiSubtitle}>
-            Informe os dados para calcular o IMC e visualizar a classificação
-            correspondente.
-          </p>
-        </div>
+        <SectionTitle
+          eyebrow="Health"
+          title="Calculadora de IMC"
+          description="Informe os dados para calcular o IMC e visualizar a classificação correspondente."
+          eyebrowClassName={styles.bmiEyebrow}
+          titleClassName={styles.bmiTitle}
+          descriptionClassName={styles.bmiSubtitle}
+        />
       </div>
 
       <div className={styles.calculatorSection}>
@@ -74,16 +77,12 @@ export default function BmiForm({ form, onChange, onClear }) {
 
         {onClear ? (
           <div className={styles.bmiActions}>
-            <button
-              type="button"
-              className={styles.bmiSecondaryButton}
-              onClick={onClear}
-            >
+            <Button className={styles.bmiSecondaryButton} onClick={onClear}>
               Limpar IMC
-            </button>
+            </Button>
           </div>
         ) : null}
       </div>
-    </div>
+    </Card>
   );
 }

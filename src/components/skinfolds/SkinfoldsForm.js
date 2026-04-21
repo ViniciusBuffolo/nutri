@@ -1,6 +1,9 @@
 "use client";
 
 import styles from "@/app/page.module.css";
+import Card from "@/components/shared/Card";
+import Button from "@/components/shared/Button";
+import SectionTitle from "@/components/shared/SectionTitle";
 
 function getProtocolConfig(age, sex, protocol) {
   const ageNumber = Number(age);
@@ -8,18 +11,16 @@ function getProtocolConfig(age, sex, protocol) {
   if (!age || Number.isNaN(ageNumber)) {
     return {
       title: "Dobras Cutâneas",
-      description: "Informe idade e sexo para liberar o protocolo correto.",
+      description: "Preencha idade e sexo para liberar o protocolo.",
       fields: [],
       allowProtocolChoice: false,
-      isChild: false,
     };
   }
 
   if (ageNumber < 18) {
     return {
       title: "Dobras Cutâneas - Criança / Adolescente",
-      description:
-        "Para menores de 18 anos, este exemplo usa protocolo simplificado de 2 dobras.",
+      description: "Protocolo simplificado de 2 dobras.",
       fields: [
         { name: "triceps", label: "Tríceps (mm)", placeholder: "Ex: 12" },
         {
@@ -29,7 +30,6 @@ function getProtocolConfig(age, sex, protocol) {
         },
       ],
       allowProtocolChoice: false,
-      isChild: true,
     };
   }
 
@@ -40,7 +40,7 @@ function getProtocolConfig(age, sex, protocol) {
           ? "Dobras Cutâneas - Homem Adulto (7 dobras)"
           : "Dobras Cutâneas - Mulher Adulta (7 dobras)",
       description:
-        "Protocolo com 7 dobras: peitoral, axilar média, tríceps, subescapular, abdominal, supra-ilíaca e coxa.",
+        "Peitoral, axilar média, tríceps, subescapular, abdominal, supra-ilíaca e coxa.",
       fields: [
         { name: "chest", label: "Peitoral (mm)", placeholder: "Ex: 8" },
         {
@@ -63,27 +63,25 @@ function getProtocolConfig(age, sex, protocol) {
         { name: "thigh", label: "Coxa (mm)", placeholder: "Ex: 20" },
       ],
       allowProtocolChoice: true,
-      isChild: false,
     };
   }
 
   if (sex === "male") {
     return {
       title: "Dobras Cutâneas - Homem Adulto (3 dobras)",
-      description: "Protocolo com 3 dobras: peitoral, abdominal e coxa.",
+      description: "Peitoral, abdominal e coxa.",
       fields: [
         { name: "chest", label: "Peitoral (mm)", placeholder: "Ex: 8" },
         { name: "abdomen", label: "Abdominal (mm)", placeholder: "Ex: 18" },
         { name: "thigh", label: "Coxa (mm)", placeholder: "Ex: 14" },
       ],
       allowProtocolChoice: true,
-      isChild: false,
     };
   }
 
   return {
     title: "Dobras Cutâneas - Mulher Adulta (3 dobras)",
-    description: "Protocolo com 3 dobras: tríceps, supra-ilíaca e coxa.",
+    description: "Tríceps, supra-ilíaca e coxa.",
     fields: [
       { name: "triceps", label: "Tríceps (mm)", placeholder: "Ex: 16" },
       {
@@ -94,7 +92,6 @@ function getProtocolConfig(age, sex, protocol) {
       { name: "thigh", label: "Coxa (mm)", placeholder: "Ex: 20" },
     ],
     allowProtocolChoice: true,
-    isChild: false,
   };
 }
 
@@ -108,16 +105,52 @@ export default function SkinfoldsForm({
   const config = getProtocolConfig(age, sex, form.protocol);
 
   return (
-    <div className={styles.bmiCard}>
+    <Card className={styles.bmiCard}>
       <div className={styles.bmiHeader}>
-        <div>
-          <p className={styles.bmiEyebrow}>Health</p>
-          <h1 className={styles.bmiTitle}>Dobras Cutâneas</h1>
-          <p className={styles.bmiSubtitle}>
-            Informe as medidas do protocolo para estimar o percentual de gordura
-            corporal.
-          </p>
+        <SectionTitle
+          eyebrow="Health"
+          title="Dobras Cutâneas"
+          description="Preencha os dados iniciais e as medidas do protocolo."
+          eyebrowClassName={styles.bmiEyebrow}
+          titleClassName={styles.bmiTitle}
+          descriptionClassName={styles.bmiSubtitle}
+        />
+      </div>
+
+      <div className={styles.calculatorSection}>
+        <div className={styles.calculatorSectionHeader}>
+          <h2 className={styles.calculatorSectionTitle}>Dados Iniciais</h2>
         </div>
+
+        <div className={styles.bmiGrid}>
+          <label className={styles.bmiField}>
+            <span>Idade</span>
+            <input
+              type="number"
+              name="age"
+              placeholder="Ex: 34"
+              value={form.age}
+              onChange={onChange}
+              min="0"
+            />
+          </label>
+
+          <label className={styles.bmiField}>
+            <span>Sexo</span>
+            <select name="sex" value={form.sex} onChange={onChange}>
+              <option value="male">Homem</option>
+              <option value="female">Mulher</option>
+            </select>
+          </label>
+        </div>
+
+        {onClear ? (
+          <div className={styles.bmiActions}>
+            <Button className={styles.bmiSecondaryButton} onClick={onClear}>
+              Limpar dados
+            </Button>
+          </div>
+        ) : null}
       </div>
 
       <div className={styles.calculatorSection}>
@@ -139,42 +172,28 @@ export default function SkinfoldsForm({
         )}
 
         {config.fields.length > 0 ? (
-          <>
-            <div className={styles.bmiGrid}>
-              {config.fields.map((field) => (
-                <label key={field.name} className={styles.bmiField}>
-                  <span>{field.label}</span>
-                  <input
-                    type="number"
-                    name={field.name}
-                    placeholder={field.placeholder}
-                    value={form[field.name] || ""}
-                    onChange={onChange}
-                    min="0"
-                    step="0.1"
-                  />
-                </label>
-              ))}
-            </div>
-
-            {onClear ? (
-              <div className={styles.bmiActions}>
-                <button
-                  type="button"
-                  className={styles.bmiSecondaryButton}
-                  onClick={onClear}
-                >
-                  Limpar Dobras
-                </button>
-              </div>
-            ) : null}
-          </>
+          <div className={styles.bmiGrid}>
+            {config.fields.map((field) => (
+              <label key={field.name} className={styles.bmiField}>
+                <span>{field.label}</span>
+                <input
+                  type="number"
+                  name={field.name}
+                  placeholder={field.placeholder}
+                  value={form[field.name] || ""}
+                  onChange={onChange}
+                  min="0"
+                  step="0.1"
+                />
+              </label>
+            ))}
+          </div>
         ) : (
           <p className={styles.bmiHelperText}>
-            Primeiro preencha idade e sexo na tela de avaliação.
+            Preencha idade e sexo para continuar.
           </p>
         )}
       </div>
-    </div>
+    </Card>
   );
 }

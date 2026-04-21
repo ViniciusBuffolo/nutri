@@ -5,8 +5,12 @@ import styles from "@/app/page.module.css";
 import TopCanvas from "@/components/layout/TopCanvas";
 import TopBar from "@/components/layout/TopBar";
 import BottomNav from "@/components/layout/BottomNav";
+import EvaluationTabs from "@/components/evaluations/EvaluationTabs";
 import SkinfoldsForm from "@/components/skinfolds/SkinfoldsForm";
 import SkinfoldsResultCard from "@/components/skinfolds/SkinfoldsResultCard";
+import Card from "@/components/shared/Card";
+import Button from "@/components/shared/Button";
+import SectionTitle from "@/components/shared/SectionTitle";
 import { nutritionSummary } from "@/data/homeData";
 import { calculateBodyFat } from "@/utils/skinfoldCalculator";
 
@@ -35,16 +39,7 @@ export default function SkinfoldsPage() {
     setIsOpen(false);
   }
 
-  function handleBaseChange(event) {
-    const { name, value } = event.target;
-
-    setForm((current) => ({
-      ...current,
-      [name]: value,
-    }));
-  }
-
-  function handleSkinfoldsChange(event) {
+  function handleChange(event) {
     const { name, value } = event.target;
 
     setForm((current) => ({
@@ -80,78 +75,26 @@ export default function SkinfoldsPage() {
         {!isOpen && <TopBar onOpen={openCanvas} />}
 
         <section className={styles.content}>
+          <EvaluationTabs activeTab="skinfolds" />
+
           <div className={styles.bmiWrapper}>
-            <div className={styles.bmiCard}>
-              <div className={styles.bmiHeader}>
-                <div>
-                  <p className={styles.bmiEyebrow}>Health</p>
-                  <h1 className={styles.bmiTitle}>Dobras Cutâneas</h1>
-                  <p className={styles.bmiSubtitle}>
-                    Informe idade, sexo e as medidas do protocolo para estimar o
-                    percentual de gordura corporal.
-                  </p>
-                </div>
-              </div>
-
-              <div className={styles.calculatorSection}>
-                <div className={styles.calculatorSectionHeader}>
-                  <h2 className={styles.calculatorSectionTitle}>
-                    Dados iniciais
-                  </h2>
-                  <p className={styles.calculatorSectionText}>
-                    Preencha idade e sexo antes de informar as dobras.
-                  </p>
-                </div>
-
-                <div className={styles.bmiGrid}>
-                  <label className={styles.bmiField}>
-                    <span>Idade</span>
-                    <input
-                      type="number"
-                      name="age"
-                      placeholder="Ex: 34"
-                      value={form.age}
-                      onChange={handleBaseChange}
-                      min="0"
-                    />
-                  </label>
-
-                  <label className={styles.bmiField}>
-                    <span>Sexo</span>
-                    <select
-                      name="sex"
-                      value={form.sex}
-                      onChange={handleBaseChange}
-                    >
-                      <option value="male">Homem</option>
-                      <option value="female">Mulher</option>
-                    </select>
-                  </label>
-                </div>
-              </div>
-
+            <div className={styles.bmiResultsColumn} style={{ gap: "16px" }}>
+              
               <SkinfoldsForm
                 age={form.age}
                 sex={form.sex}
                 form={form}
-                onChange={handleSkinfoldsChange}
-                onClear={clearForm}
+                onChange={handleChange}
               />
+
+                  <div className={styles.bmiActions}>
+                    <Button onClick={clearForm}>Limpar dados</Button>
+                  </div>
             </div>
 
             <div className={styles.bmiResultsColumn}>
               <SkinfoldsResultCard result={result} />
             </div>
-          </div>
-
-          <div className={styles.bmiActions}>
-            <button
-              type="button"
-              className={styles.bmiSecondaryButton}
-              onClick={clearForm}
-            >
-              Limpar dados
-            </button>
           </div>
         </section>
       </section>

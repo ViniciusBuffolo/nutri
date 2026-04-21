@@ -1,6 +1,8 @@
 "use client";
 
 import styles from "@/app/page.module.css";
+import Card from "@/components/shared/Card";
+import Badge from "@/components/shared/Badge";
 import BmiGauge from "@/components/bmi/BmiGauge";
 
 function getToneClass(tone) {
@@ -26,7 +28,7 @@ export default function BmiResultCard({ result }) {
   const resultToneClass = result ? getToneClass(result.tone) : "";
 
   return (
-    <div className={`${styles.bmiResultCard} ${resultToneClass}`}>
+    <Card className={`${styles.bmiResultCard} ${resultToneClass}`}>
       <p className={styles.bmiEyebrow}>Resultado de IMC</p>
 
       {result ? (
@@ -40,11 +42,11 @@ export default function BmiResultCard({ result }) {
             </div>
 
             <div className={styles.bmiStatusBlock}>
-              <div className={styles.bmiBadge}>
+              <Badge className={styles.bmiBadge}>
                 {result.group === "child" && "Criança / Adolescente"}
                 {result.group === "adult" && "Adulto"}
                 {result.group === "older" && "Idoso"}
-              </div>
+              </Badge>
 
               <h2 className={styles.bmiResultTitle}>{result.label}</h2>
             </div>
@@ -64,6 +66,6 @@ export default function BmiResultCard({ result }) {
           </p>
         </>
       )}
-    </div>
+    </Card>
   );
 }

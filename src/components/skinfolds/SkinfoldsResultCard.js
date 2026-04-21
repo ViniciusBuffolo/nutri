@@ -1,6 +1,8 @@
 "use client";
 
 import styles from "@/app/page.module.css";
+import EmptyState from "@/components/shared/EmptyState";
+import Badge from "@/components/shared/Badge";
 
 export default function SkinfoldsResultCard({ result }) {
   return (
@@ -18,7 +20,7 @@ export default function SkinfoldsResultCard({ result }) {
             </div>
 
             <div className={styles.bmiStatusBlock}>
-              <div className={styles.bmiBadge}>{result.protocol}</div>
+              <Badge>{result.protocol}</Badge>
               <h2 className={styles.bmiResultTitle}>{result.category}</h2>
             </div>
           </div>
@@ -33,13 +35,10 @@ export default function SkinfoldsResultCard({ result }) {
           </p>
         </>
       ) : (
-        <>
-          <div className={styles.bmiEmptyValue}>--</div>
-          <h2 className={styles.bmiResultTitle}>Preencha os dados</h2>
-          <p className={styles.bmiResultText}>
-            Informe idade, sexo e todas as dobras do protocolo selecionado.
-          </p>
-        </>
+        <EmptyState
+          title="Preencha os dados"
+          description="Informe idade, sexo e todas as dobras do protocolo selecionado."
+        />
       )}
     </div>
   );

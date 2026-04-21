@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import styles from "@/app/page.module.css";
+import Card from "@/components/shared/Card";
+import Button from "@/components/shared/Button";
 
 export default function EvaluationSummaryCard({
   eyebrow = "Avaliações",
@@ -13,24 +14,24 @@ export default function EvaluationSummaryCard({
   secondaryLabel,
 }) {
   return (
-    <div className={styles.bmiResultCard}>
+    <Card className={styles.bmiResultCard}>
       <p className={styles.bmiEyebrow}>{eyebrow}</p>
       <h2 className={styles.bmiResultTitle}>{title}</h2>
       <p className={styles.bmiResultText}>{description}</p>
 
       <div className={styles.bmiActions}>
         {primaryHref && primaryLabel ? (
-          <Link href={primaryHref} className={styles.bmiSecondaryButton}>
+          <Button href={primaryHref} className={styles.bmiSecondaryButton}>
             {primaryLabel}
-          </Link>
+          </Button>
         ) : null}
 
         {secondaryHref && secondaryLabel ? (
-          <Link href={secondaryHref} className={styles.bmiSecondaryButton}>
+          <Button href={secondaryHref} className={styles.bmiSecondaryButton}>
             {secondaryLabel}
-          </Link>
+          </Button>
         ) : null}
       </div>
-    </div>
+    </Card>
   );
 }

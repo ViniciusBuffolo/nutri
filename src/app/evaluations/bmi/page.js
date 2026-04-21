@@ -5,6 +5,8 @@ import styles from "@/app/page.module.css";
 import TopCanvas from "@/components/layout/TopCanvas";
 import TopBar from "@/components/layout/TopBar";
 import BottomNav from "@/components/layout/BottomNav";
+import EvaluationTabs from "@/components/evaluations/EvaluationTabs";
+import BmiForm from "@/components/bmi/BmiForm";
 import BmiResultCard from "@/components/bmi/BmiResultCard";
 import { nutritionSummary } from "@/data/homeData";
 import { buildBmiResult } from "@/utils/healthCalculator";
@@ -59,92 +61,14 @@ export default function BmiPage() {
         {!isOpen && <TopBar onOpen={openCanvas} />}
 
         <section className={styles.content}>
+          <EvaluationTabs activeTab="bmi" />
+
           <div className={styles.bmiWrapper}>
-            <div className={styles.bmiCard}>
-              <div className={styles.bmiHeader}>
-                <div>
-                  <p className={styles.bmiEyebrow}>Health</p>
-                  <h1 className={styles.bmiTitle}>Calculadora de IMC</h1>
-                  <p className={styles.bmiSubtitle}>
-                    Informe os dados do paciente para calcular o IMC e visualizar
-                    a classificação correspondente.
-                  </p>
-                </div>
-              </div>
-
-              <div className={styles.calculatorSection}>
-                <div className={styles.calculatorSectionHeader}>
-                  <h2 className={styles.calculatorSectionTitle}>
-                    Dados para o cálculo
-                  </h2>
-                  <p className={styles.calculatorSectionText}>
-                    Preencha peso, altura, idade e sexo.
-                  </p>
-                </div>
-
-                <div className={styles.bmiGrid}>
-                  <label className={styles.bmiField}>
-                    <span>Peso (kg)</span>
-                    <input
-                      type="number"
-                      name="weight"
-                      placeholder="Ex: 80"
-                      value={form.weight}
-                      onChange={handleChange}
-                      min="0"
-                      step="0.1"
-                    />
-                  </label>
-
-                  <label className={styles.bmiField}>
-                    <span>Altura (cm)</span>
-                    <input
-                      type="number"
-                      name="height"
-                      placeholder="Ex: 173"
-                      value={form.height}
-                      onChange={handleChange}
-                      min="0"
-                      step="0.1"
-                    />
-                  </label>
-
-                  <label className={styles.bmiField}>
-                    <span>Idade</span>
-                    <input
-                      type="number"
-                      name="age"
-                      placeholder="Ex: 34"
-                      value={form.age}
-                      onChange={handleChange}
-                      min="0"
-                    />
-                  </label>
-
-                  <label className={styles.bmiField}>
-                    <span>Sexo</span>
-                    <select name="sex" value={form.sex} onChange={handleChange}>
-                      <option value="male">Homem</option>
-                      <option value="female">Mulher</option>
-                    </select>
-                  </label>
-                </div>
-              </div>
-            </div>
+            <BmiForm form={form} onChange={handleChange} onClear={clearForm} />
 
             <div className={styles.bmiResultsColumn}>
               <BmiResultCard result={result} />
             </div>
-          </div>
-
-          <div className={styles.bmiActions}>
-            <button
-              type="button"
-              className={styles.bmiSecondaryButton}
-              onClick={clearForm}
-            >
-              Limpar dados
-            </button>
           </div>
         </section>
       </section>

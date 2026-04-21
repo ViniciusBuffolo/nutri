@@ -1,34 +1,34 @@
 "use client";
 
-import Link from "next/link";
 import styles from "@/app/page.module.css";
+import Button from "@/components/shared/Button";
 
 export default function EvaluationTabs({ activeTab = "overview" }) {
   return (
     <div className={styles.bmiActions}>
-      <Link
+      <Button
         href="/evaluations"
         className={styles.bmiSecondaryButton}
         aria-current={activeTab === "overview" ? "page" : undefined}
       >
         Visão Geral
-      </Link>
+      </Button>
 
-      <Link
+      <Button
         href="/evaluations/bmi"
         className={styles.bmiSecondaryButton}
         aria-current={activeTab === "bmi" ? "page" : undefined}
       >
         IMC
-      </Link>
+      </Button>
 
-      <Link
+      <Button
         href="/evaluations/skinfolds"
         className={styles.bmiSecondaryButton}
         aria-current={activeTab === "skinfolds" ? "page" : undefined}
       >
         Dobras Cutâneas
-      </Link>
+      </Button>
     </div>
   );
 }

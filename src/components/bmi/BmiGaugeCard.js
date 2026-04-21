@@ -1,11 +1,13 @@
 "use client";
 
 import styles from "@/app/page.module.css";
+import Card from "@/components/shared/Card";
+import Badge from "@/components/shared/Badge";
 import BmiGauge from "@/components/bmi/BmiGauge";
 
 export default function BmiGaugeCard({ result }) {
   return (
-    <div className={styles.bmiResultCard}>
+    <Card className={styles.bmiResultCard}>
       <p className={styles.bmiEyebrow}>Gauge de IMC</p>
 
       {result ? (
@@ -19,11 +21,11 @@ export default function BmiGaugeCard({ result }) {
             </div>
 
             <div className={styles.bmiStatusBlock}>
-              <div className={styles.bmiBadge}>
+              <Badge className={styles.bmiBadge}>
                 {result.group === "child" && "Criança / Adolescente"}
                 {result.group === "adult" && "Adulto"}
                 {result.group === "older" && "Idoso"}
-              </div>
+              </Badge>
             </div>
           </div>
 
@@ -42,6 +44,6 @@ export default function BmiGaugeCard({ result }) {
           </p>
         </>
       )}
-    </div>
+    </Card>
   );
 }
