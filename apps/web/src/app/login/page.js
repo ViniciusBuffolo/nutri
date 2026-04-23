@@ -7,8 +7,8 @@ import TopCanvas from "@/components/layout/TopCanvas";
 import BottomNav from "@/components/layout/BottomNav";
 import LoginCard from "@/components/auth/LoginCard";
 import TopBar from "@/components/layout/TopBar";
-import { nutritionSummary } from "@/data/homeData";
-import { users } from "@/data/users";
+import { nutritionSummary } from "@data/homeData";
+import { users } from "@data/users";
 
 export default function LoginPage() {
   const router = useRouter();

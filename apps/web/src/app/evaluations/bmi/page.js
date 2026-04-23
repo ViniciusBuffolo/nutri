@@ -8,8 +8,8 @@ import BottomNav from "@/components/layout/BottomNav";
 import EvaluationTabs from "@/components/evaluations/EvaluationTabs";
 import BmiForm from "@/components/bmi/BmiForm";
 import BmiResultCard from "@/components/bmi/BmiResultCard";
-import { nutritionSummary } from "@/data/homeData";
-import { buildBmiResult } from "@/utils/healthCalculator";
+import { nutritionSummary } from "@data/homeData";
+import { buildBmiResult } from "@utils/healthCalculator";
 
 const INITIAL_BMI_FORM = {
   weight: "",

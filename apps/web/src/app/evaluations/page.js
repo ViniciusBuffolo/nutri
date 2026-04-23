@@ -7,7 +7,7 @@ import TopBar from "@/components/layout/TopBar";
 import BottomNav from "@/components/layout/BottomNav";
 import EvaluationSummaryCard from "@/components/evaluations/EvaluationSummaryCard";
 import EvaluationTabs from "@/components/evaluations/EvaluationTabs";
-import { nutritionSummary } from "@/data/homeData";
+import { nutritionSummary } from "@data/homeData";
 
 export default function EvaluationsPage() {
   const [isOpen, setIsOpen] = useState(false);

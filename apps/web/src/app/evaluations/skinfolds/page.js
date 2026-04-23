@@ -11,8 +11,8 @@ import SkinfoldsResultCard from "@/components/skinfolds/SkinfoldsResultCard";
 import Card from "@/components/shared/Card";
 import Button from "@/components/shared/Button";
 import SectionTitle from "@/components/shared/SectionTitle";
-import { nutritionSummary } from "@/data/homeData";
-import { calculateBodyFat } from "@/utils/skinfoldCalculator";
+import { nutritionSummary } from "@data/homeData";
+import { calculateBodyFat } from "@utils/skinfoldCalculator";
 
 const INITIAL_FORM = {
   age: "",

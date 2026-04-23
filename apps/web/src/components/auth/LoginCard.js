@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import styles from "@/app/page.module.css";
 import Card from "@/components/shared/Card";
 import Button from "@/components/shared/Button";
@@ -9,14 +8,14 @@ import SectionTitle from "@/components/shared/SectionTitle";
 export default function LoginCard({
   form,
   error,
+  showPassword,
+  onTogglePassword,
   onChange,
   onSubmit,
   onForgotPassword,
   onSignUp,
   onSocialLogin,
 }) {
-  const [showPassword, setShowPassword] = useState(false);
-
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -66,7 +65,7 @@ export default function LoginCard({
               <button
                 type="button"
                 className={styles.loginPasswordToggle}
-                onClick={() => setShowPassword((current) => !current)}
+                onClick={onTogglePassword}
                 aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
               >
                 {showPassword ? "🙈" : "👁"}

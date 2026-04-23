@@ -5,7 +5,7 @@ import styles from "@/app/page.module.css";
 import TopCanvas from "@/components/layout/TopCanvas";
 import TopBar from "@/components/layout/TopBar";
 import BottomNav from "@/components/layout/BottomNav";
-import { nutritionSummary } from "@/data/homeData";
+import { nutritionSummary } from "@data/homeData";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(true);
