@@ -7,15 +7,22 @@ export function useLogin(initialForm = {}) {
     ...initialForm,
   });
 
+  const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function onChange(eventOrValue) {
-    if (eventOrValue?.target) {
-      const { name, value } = eventOrValue.target;
-      setForm((prev) => ({ ...prev, [name]: value }));
-    } else {
-      const { name, value } = eventOrValue;
-      setForm((prev) => ({ ...prev, [name]: value }));
+    const { name, value } = eventOrValue?.target
+      ? eventOrValue.target
+      : eventOrValue;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (error) {
+      setError("");
     }
   }
 
@@ -25,7 +32,11 @@ export function useLogin(initialForm = {}) {
 
   return {
     form,
+    error,
+    setError,
     showPassword,
+    isLoading,
+    setIsLoading,
     onChange,
     togglePassword,
   };
