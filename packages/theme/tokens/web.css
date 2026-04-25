@@ -86,6 +86,7 @@
   --shadow-hero: 0 18px 40px rgba(46, 150, 106, 0.18);
   --shadow-input-focus: 0 0 0 3px rgba(105, 211, 165, 0.15);
   --shadow-top-bar: 0 8px 20px rgba(86, 201, 149, 0.18);
+  --shadow-bottom-nav: 0 10px 22px rgba(47, 49, 47, 0.12);
 
   /* =========================
      Layout Sizes
@@ -135,8 +136,25 @@
   --chevron-border-width: 4px;
 
   /* =========================
+     Bottom Navigation
+  ========================= */
+  --nav-icon-muted: #c8c8c8;
+  --nav-center-border: #e7e7e7;
+
+  --bottom-nav-height: 86px;
+  --bottom-nav-height-mobile: 78px;
+  --bottom-nav-center-size: 76px;
+  --bottom-nav-center-size-mobile: 68px;
+  --nav-active-dot-size: 8px;
+
+  /* =========================
      Motion
   ========================= */
   --transition-base: 0.3s ease;
   --transition-layout: 0.5s ease;
+
+  /* =========================
+     Z Index
+  ========================= */
+  --z-bottom-nav: 1200;
 }
