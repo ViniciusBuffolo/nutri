@@ -1,0 +1,142 @@
+:root {
+  /* =========================
+     Colors
+  ========================= */
+  --background: #f4f3ee;
+  --foreground: #2f312f;
+  --muted: #8b918d;
+
+  --white: #ffffff;
+  --card: #ffffff;
+  --card-soft: rgba(255, 255, 255, 0.94);
+  --card-muted: #f7f7f3;
+
+  --primary: #69d3a5;
+  --primary-strong: #56c995;
+  --primary-soft: #dbf6e8;
+  --primary-soft-2: #edf9f2;
+  --primary-text: #2e966a;
+  --primary-muted: #8ca29b;
+  --primary-placeholder: #a8cfc0;
+
+  --danger: #d95c5c;
+  --border: rgba(93, 120, 102, 0.1);
+
+  /* =========================
+     Hero
+  ========================= */
+  --hero-start: var(--primary);
+  --hero-end: var(--primary-strong);
+  --hero-ring: rgba(255, 255, 255, 0.58);
+
+  /* =========================
+     Metric Tones
+  ========================= */
+  --tone-info: #70c6ef;
+  --tone-success: #98d11a;
+  --tone-warning: #f2b300;
+  --tone-orange: #f39a12;
+  --tone-danger: #f0623c;
+  --tone-critical: #e3362c;
+
+  /* =========================
+     Radius
+  ========================= */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* =========================
+     Spacing
+  ========================= */
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 32px;
+
+  /* =========================
+     Typography
+  ========================= */
+  --font-xs: 12px;
+  --font-sm: 13px;
+  --font-md: 14px;
+  --font-lg: 18px;
+  --font-xl: 24px;
+  --font-xxl: 32px;
+
+  --font-base: 1rem;
+  --font-form-footer: 0.92rem;
+  --font-title-sm: 1.15rem;
+  --font-metric: 3.2rem;
+  --font-metric-mobile: 2.6rem;
+
+  --letter-spacing-label: 1px;
+
+  /* =========================
+     Shadows
+  ========================= */
+  --shadow-card: 0 12px 24px rgba(49, 80, 62, 0.08);
+  --shadow-summary-card: 0 18px 40px rgba(47, 49, 47, 0.06);
+  --shadow-hero: 0 18px 40px rgba(46, 150, 106, 0.18);
+  --shadow-input-focus: 0 0 0 3px rgba(105, 211, 165, 0.15);
+  --shadow-top-bar: 0 8px 20px rgba(86, 201, 149, 0.18);
+
+  /* =========================
+     Layout Sizes
+  ========================= */
+  --page-header-height: 72px;
+  --bottom-nav-space: 100px;
+  --card-center-bottom-space: 110px;
+
+  /* =========================
+     Top Canvas / Header
+  ========================= */
+  --canvas-open-height: 500px;
+  --top-canvas-height: var(--canvas-open-height);
+
+  --top-canvas-padding-x: 20px;
+  --top-canvas-padding-top: 28px;
+  --top-canvas-padding-bottom: 110px;
+
+  --top-bar-height: 72px;
+  --top-bar-padding-x: 18px;
+  --top-bar-logo-height: 36px;
+
+  --canvas-circle-size: 200px;
+  --canvas-circle-column: 210px;
+  --canvas-stats-max-width: 520px;
+  --canvas-macros-max-width: 480px;
+
+  /* =========================
+     Forms
+  ========================= */
+  --input-height: 48px;
+  --input-line-padding-y: 10px;
+  --password-toggle-space: 36px;
+  --button-height: 46px;
+  --social-button-size: 42px;
+
+  /* =========================
+     Metrics
+  ========================= */
+  --metric-tone-border-width: 8px;
+
+  /* =========================
+     Icons
+  ========================= */
+  --icon-button-size: 44px;
+  --chevron-size: 18px;
+  --chevron-border-width: 4px;
+
+  /* =========================
+     Motion
+  ========================= */
+  --transition-base: 0.3s ease;
+  --transition-layout: 0.5s ease;
+}

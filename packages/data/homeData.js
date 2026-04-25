@@ -1,3 +1,11 @@
+export const homeData = {
+  title: "Welcome",
+  subtitle: "Track your health and nutrition in a simple way.",
+  ctaLabel: "Start now",
+};
+
+
+
 export const nutritionSummary = {
   plan: "CLASSIC",
   stats: {

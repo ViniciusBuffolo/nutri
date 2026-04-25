@@ -1,0 +1,99 @@
+.header {
+  margin-bottom: var(--space-8);
+}
+
+.optionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.optionGroup h3 {
+  color: var(--foreground);
+  font-size: var(--font-md);
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--foreground);
+  font-size: var(--font-md);
+}
+
+.checkItem input {
+  accent-color: var(--primary-strong);
+}
+
+.switchItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--foreground);
+  font-size: var(--font-md);
+}
+
+.switchItem input {
+  display: none;
+}
+
+.switchItem span {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  border-radius: var(--radius-pill);
+  background: var(--border);
+  transition: var(--transition-base);
+}
+
+.switchItem span::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  transition: var(--transition-base);
+}
+
+.switchItem input:checked + span {
+  background: var(--primary-strong);
+}
+
+.switchItem input:checked + span::before {
+  transform: translateX(18px);
+}
+
+.switchItem input:disabled + span {
+  opacity: 0.5;
+}
+
+:global(.contentCard) {
+  height: auto;
+  min-height: auto;
+  margin-bottom: var(--space-5);
+}
+
+:global(textarea.inputLine) {
+  min-height: 96px;
+  resize: vertical;
+}
+
+:global(select.inputLine) {
+  cursor: pointer;
+}
+
+:global(select.inputLine[multiple]) {
+  min-height: 96px;
+}
+
+:global(input.inputLine[type="color"]) {
+  height: 42px;
+  padding: 4px 0;
+}
+
+:global(input.inputLine[type="file"]) {
+  padding-bottom: 10px;
+}

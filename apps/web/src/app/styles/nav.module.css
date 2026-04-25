@@ -1,0 +1,43 @@
+.bottomNav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f5f2ef;
+  border-top: 1px solid #e7e1dc;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: end;
+  padding: 8px 8px 10px;
+  z-index: 1200;
+}
+
+.navItem {
+  border: none;
+  background: transparent;
+  text-decoration: none;
+  color: #9b9b9b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.navItem small {
+  font-size: 0.72rem;
+  color: #9b9b9b;
+}
+
+.navCenter {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: #4fd2a1;
+  color: white;
+  font-size: 2rem;
+  box-shadow: 0 10px 22px rgba(79, 210, 161, 0.35);
+}

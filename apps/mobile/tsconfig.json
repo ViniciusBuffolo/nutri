@@ -3,15 +3,19 @@
   "compilerOptions": {
     "strict": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"],
+      "@data/*": ["../../packages/data/*"],
+      "@theme/*": ["../../packages/theme/*"],
+      "@core/*": ["../../packages/core/*"],
+      "@ui/*": ["../../packages/ui/*"],
+      "@utils/*": ["../../packages/utils/*"]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    "expo-env.d.ts", 
+    "**/*.d.ts"
   ]
 }

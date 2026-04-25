@@ -1,4 +1,4 @@
-import styles from "@/app/page.module.css";
+import styles from "@/app/styles/header.module.css";
 import Image from "next/image";
 import Link from "next/link";
 

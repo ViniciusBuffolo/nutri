@@ -2,31 +2,19 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "@/app/page.module.css";
-import TopCanvas from "@/components/layout/TopCanvas";
-import BottomNav from "@/components/layout/BottomNav";
+import AppLayout from "@/components/layout/AppLayout";
 import LoginCard from "@/components/auth/LoginCard";
-import TopBar from "@/components/layout/TopBar";
-import { nutritionSummary } from "@data/homeData";
 import { users } from "@data/users";
 
 export default function LoginPage() {
   const router = useRouter();
 
-  const [isOpen, setIsOpen] = useState(false);
   const [form, setForm] = useState({
     identifier: "",
     password: "",
   });
+
   const [error, setError] = useState("");
-
-  function openCanvas() {
-    setIsOpen(true);
-  }
-
-  function closeCanvas() {
-    setIsOpen(false);
-  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -41,13 +29,15 @@ export default function LoginPage() {
     }
   }
 
-  function handleSubmit() {
+  function handleSubmit(event) {
+    event?.preventDefault();
+
     const identifier = form.identifier.trim().toLowerCase();
     const password = form.password.trim();
 
     const matchedUser = users.find(
       (user) =>
-        user.email.toLowerCase() === identifier && user.password === password
+        user.email.toLowerCase() === identifier && user.password === password,
     );
 
     if (!matchedUser) {
@@ -72,21 +62,9 @@ export default function LoginPage() {
   }
 
   return (
-    <main className={styles.page}>
-      <div className={styles.backgroundOverlay} />
-
-      <TopCanvas
-        isOpen={isOpen}
-        closeCanvas={closeCanvas}
-        nutritionSummary={nutritionSummary}
-      />
-
-      <section
-        className={`${styles.mainContent} ${isOpen ? styles.mainShifted : ""}`}
-      >
-        {!isOpen && <TopBar onOpen={openCanvas} />}
-
-        <section className={styles.loginPageContent}>
+    <AppLayout>
+      <section className="cardCenterWrap">
+        <div className="cardCenterSmall">
           <LoginCard
             form={form}
             error={error}
@@ -96,10 +74,8 @@ export default function LoginPage() {
             onSignUp={handleSignUp}
             onSocialLogin={handleSocialLogin}
           />
-        </section>
+        </div>
       </section>
-
-      <BottomNav />
-    </main>
+    </AppLayout>
   );
 }

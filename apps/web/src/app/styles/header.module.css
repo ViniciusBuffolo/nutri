@@ -1,0 +1,151 @@
+/* =========================
+   Top Canvas
+========================= */
+
+.topCanvas {
+  position: fixed;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  z-index: 1000;
+  background: transparent;
+  transition: height var(--transition-layout);
+}
+
+.open {
+  height: var(--top-canvas-height);
+}
+
+.heroInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: var(--top-canvas-padding-top) var(--top-canvas-padding-x)
+    var(--top-canvas-padding-bottom);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--white);
+  background: linear-gradient(
+    180deg,
+    var(--hero-start) 0%,
+    var(--hero-end) 100%
+  );
+  clip-path: ellipse(100% 70% at 50% 30%);
+  -webkit-clip-path: ellipse(100% 70% at 50% 30%);
+}
+
+.topBar {
+  width: 100%;
+  height: var(--top-bar-height);
+  padding: 0 var(--top-bar-padding-x);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: none;
+  cursor: pointer;
+}
+
+.topBarHero {
+  color: var(--white);
+  background: linear-gradient(
+    180deg,
+    var(--hero-start) 0%,
+    var(--hero-end) 100%
+  );
+  box-shadow: var(--shadow-top-bar);
+}
+
+.topBarTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+.topBarLogo {
+  width: auto;
+  height: var(--top-bar-logo-height);
+  display: block;
+}
+
+.plan {
+  margin: var(--space-2) 0 var(--space-6);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.topStats {
+  width: 100%;
+  max-width: var(--canvas-stats-max-width);
+  display: grid;
+  grid-template-columns: 1fr var(--canvas-circle-column) 1fr;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.circleWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  width: var(--canvas-circle-size);
+  height: var(--canvas-circle-size);
+  border: 4px solid var(--hero-ring);
+  border-radius: var(--radius-pill);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.macros {
+  width: 100%;
+  max-width: var(--canvas-macros-max-width);
+  margin-top: var(--space-8);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+.macroItem {
+  text-align: center;
+}
+
+.arrowBtn {
+  width: var(--icon-button-size);
+  height: var(--icon-button-size);
+  margin-top: var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.chevronIcon {
+  width: var(--chevron-size);
+  height: var(--chevron-size);
+  display: inline-block;
+  border-right: var(--chevron-border-width) solid currentColor;
+  border-bottom: var(--chevron-border-width) solid currentColor;
+  box-sizing: border-box;
+  transform: rotate(45deg);
+}
+
+.chevronUp {
+  transform: rotate(-135deg);
+}

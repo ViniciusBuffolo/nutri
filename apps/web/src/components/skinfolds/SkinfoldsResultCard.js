@@ -1,35 +1,38 @@
 "use client";
 
-import styles from "@/app/page.module.css";
-import EmptyState from "@/components/shared/EmptyState";
-import Badge from "@/components/shared/Badge";
+import Card from "@ui/shared/Card";
+import Badge from "@ui/shared/Badge";
+import EmptyState from "@ui/shared/EmptyState";
 
 export default function SkinfoldsResultCard({ result }) {
   return (
-    <div className={styles.bmiResultCard}>
-      <p className={styles.bmiEyebrow}>Gordura Corporal</p>
+    <Card className="contentCard">
+      <p className="sectionEyebrow">Gordura Corporal</p>
 
       {result ? (
         <>
-          <div className={styles.bmiResultTop}>
+          <div className="metricHeader">
             <div>
-              <div className={styles.bmiValue}>{result.bodyFat}%</div>
-              <div className={styles.bmiRangeText}>
+              <div className="metricValue">{result.bodyFat}%</div>
+              <div className="metricRangeText">
                 Soma das dobras: {result.sum} mm
               </div>
             </div>
 
-            <div className={styles.bmiStatusBlock}>
-              <Badge>{result.protocol}</Badge>
-              <h2 className={styles.bmiResultTitle}>{result.category}</h2>
+            <div className="metricStatusBlock">
+              <Badge className="metricBadge" variant="neutral">
+                {result.protocol}
+              </Badge>
+
+              <h2 className="sectionTitle">{result.category}</h2>
             </div>
           </div>
 
-          <p className={styles.bmiResultText}>
+          <p className="sectionText">
             Dobras usadas: {result.sites.join(", ")}.
           </p>
 
-          <p className={styles.bmiHelperText}>
+          <p className="sectionTextMuted">
             O protocolo é definido por idade, sexo e escolha entre 3 ou 7
             dobras quando adulto.
           </p>
@@ -38,8 +41,11 @@ export default function SkinfoldsResultCard({ result }) {
         <EmptyState
           title="Preencha os dados"
           description="Informe idade, sexo e todas as dobras do protocolo selecionado."
+          valueClassName="metricEmptyValue"
+          titleClassName="sectionTitle"
+          descriptionClassName="sectionTextMuted"
         />
       )}
-    </div>
+    </Card>
   );
 }

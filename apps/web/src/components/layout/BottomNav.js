@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "@/app/page.module.css";
+import styles from "@/app/styles/nav.module.css";
 
 export default function BottomNav() {
   return (

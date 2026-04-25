@@ -1,37 +1,36 @@
 "use client";
 
-import styles from "@/app/page.module.css";
-import Card from "@/components/shared/Card";
-import Button from "@/components/shared/Button";
+import Link from "next/link";
+import Button from "@ui/shared/Button";
 
 export default function EvaluationSummaryCard({
-  eyebrow = "Avaliações",
+  icon = "📋",
+  eyebrow = "Avaliação",
   title = "Resumo do módulo",
   description = "Escolha uma das avaliações disponíveis para iniciar.",
-  primaryHref,
-  primaryLabel,
-  secondaryHref,
-  secondaryLabel,
+  href,
+  label = "Abrir",
 }) {
   return (
-    <Card className={styles.bmiResultCard}>
-      <p className={styles.bmiEyebrow}>{eyebrow}</p>
-      <h2 className={styles.bmiResultTitle}>{title}</h2>
-      <p className={styles.bmiResultText}>{description}</p>
+    <article className="contentCard">
+      <div className="contentCardHeader">
+        <div className="actionCardIcon">{icon}</div>
 
-      <div className={styles.bmiActions}>
-        {primaryHref && primaryLabel ? (
-          <Button href={primaryHref} className={styles.bmiSecondaryButton}>
-            {primaryLabel}
-          </Button>
-        ) : null}
-
-        {secondaryHref && secondaryLabel ? (
-          <Button href={secondaryHref} className={styles.bmiSecondaryButton}>
-            {secondaryLabel}
-          </Button>
-        ) : null}
+        <p className="sectionEyebrow">{eyebrow}</p>
+        <h2 className="sectionTitle">{title}</h2>
       </div>
-    </Card>
+
+      <div className="contentCardBody">
+        <p className="sectionText sectionTextMuted">{description}</p>
+      </div>
+
+      {href ? (
+        <div className="contentCardFooter">
+          <Button as={Link} href={href} variant="secondary">
+            {label}
+          </Button>
+        </div>
+      ) : null}
+    </article>
   );
 }

@@ -1,9 +1,8 @@
 "use client";
 
-import styles from "@/app/page.module.css";
-import Card from "@/components/shared/Card";
-import Button from "@/components/shared/Button";
-import SectionTitle from "@/components/shared/SectionTitle";
+import Card from "@ui/shared/Card";
+import Button from "@ui/shared/Button";
+import SectionTitle from "@ui/shared/SectionTitle";
 
 export default function LoginCard({
   form,
@@ -18,123 +17,124 @@ export default function LoginCard({
 }) {
   function handleSubmit(event) {
     event.preventDefault();
-
-    if (onSubmit) {
-      onSubmit(event);
-    }
+    onSubmit?.(event);
   }
 
   return (
-    <Card className={styles.loginCard}>
-      <div className={styles.loginHeader}>
+    <Card className="contentCard">
+      <div className="contentCardHeader">
         <SectionTitle
-          eyebrow="Access"
           title="Login"
           description="Entre com seu e-mail e sua senha para continuar."
-          eyebrowClassName={styles.loginEyebrow}
-          titleClassName={styles.loginTitle}
-          descriptionClassName={styles.loginSubtitle}
+          titleClassName="sectionTitle"
+          descriptionClassName="sectionTextMuted"
         />
       </div>
 
-      <form className={styles.loginForm} onSubmit={handleSubmit}>
-        <div className={styles.loginFields}>
-          <label className={styles.loginField}>
-            <span>E-mail</span>
-            <input
-              type="email"
-              name="identifier"
-              placeholder="Ex: camila@email.com"
-              value={form?.identifier ?? ""}
-              onChange={onChange}
-            />
-          </label>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="contentCardBody">
+          <div className="formFields">
+            
+            <div className="inputGroup">
+              <label htmlFor="identifier">E-mail</label>
 
-          <label className={styles.loginField}>
-            <span>Senha</span>
-
-            <div className={styles.loginPasswordWrap}>
               <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                placeholder="Digite sua senha"
-                value={form?.password ?? ""}
+                id="identifier"
+                className="inputLine"
+                type="email"
+                name="identifier"
+                placeholder="Email Address"
+                value={form?.identifier ?? ""}
                 onChange={onChange}
               />
-
-              <button
-                type="button"
-                className={styles.loginPasswordToggle}
-                onClick={onTogglePassword}
-                aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
-              >
-                {showPassword ? "🙈" : "👁"}
-              </button>
             </div>
-          </label>
+
+            <div className="inputGroup">
+              <label htmlFor="password">Senha</label>
+
+              <div className="inputLinePasswordWrap">
+                <input
+                  id="password"
+                  className="inputLine"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  value={form?.password ?? ""}
+                  onChange={onChange}
+                />
+
+                <button
+                  type="button"
+                  className="inputLinePasswordToggle"
+                  onClick={onTogglePassword}
+                >
+                  {showPassword ? "🙈" : "👁"}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {error && <p className="formError">{error}</p>}
+
+          <div className="formRowEnd">
+            <button
+              type="button"
+              className="formTextButton"
+              onClick={onForgotPassword}
+            >
+              Esqueceu sua senha?
+            </button>
+          </div>
+
+          <div className="contentCardFooter">
+            <Button className="formFullButton" variant="primary" type="submit">
+              Entrar
+            </Button>
+          </div>
+
+          <div className="formDivider">
+            <span className="formDividerText">Ou entre com</span>
+          </div>
+
+          <div className="formSocialRow">
+            <button
+              type="button"
+              className="formSocialButton"
+              onClick={() => onSocialLogin?.("facebook")}
+            >
+              f
+            </button>
+
+            <button
+              type="button"
+              className="formSocialButton"
+              onClick={() => onSocialLogin?.("twitter")}
+            >
+              t
+            </button>
+
+            <button
+              type="button"
+              className="formSocialButton"
+              onClick={() => onSocialLogin?.("instagram")}
+            >
+              ◎
+            </button>
+          </div>
         </div>
 
-        {error ? <p className={styles.loginError}>{error}</p> : null}
-
-        <div className={styles.loginRow}>
-          <button
-            type="button"
-            className={styles.loginLinkButton}
-            onClick={onForgotPassword}
-          >
-            Esqueceu sua senha?
-          </button>
+        <div className="contentCardFooter">
+          <p className="formFooterText">
+            Não tem uma conta?{" "}
+            <button
+              type="button"
+              className="formFooterLink"
+              onClick={onSignUp}
+            >
+              Criar conta
+            </button>
+          </p>
         </div>
-
-        <div className={styles.loginActions}>
-          <Button className={styles.loginPrimaryButton} type="submit">
-            Entrar
-          </Button>
-        </div>
-
-        <div className={styles.loginDivider}>
-          <span className={styles.loginDividerText}>Ou entre com</span>
-        </div>
-
-        <div className={styles.loginSocialRow}>
-          <button
-            type="button"
-            className={styles.loginSocialButton}
-            onClick={() => onSocialLogin?.("facebook")}
-            aria-label="Entrar com Facebook"
-          >
-            f
-          </button>
-
-          <button
-            type="button"
-            className={styles.loginSocialButton}
-            onClick={() => onSocialLogin?.("twitter")}
-            aria-label="Entrar com Twitter"
-          >
-            t
-          </button>
-
-          <button
-            type="button"
-            className={styles.loginSocialButton}
-            onClick={() => onSocialLogin?.("instagram")}
-            aria-label="Entrar com Instagram"
-          >
-            ◎
-          </button>
-        </div>
-
-        <p className={styles.loginFooterText}>
-          Não tem uma conta?{" "}
-          <button
-            type="button"
-            className={styles.loginFooterLink}
-            onClick={onSignUp}
-          >
-            Criar conta
-          </button>
-        </p>
       </form>
     </Card>
   );

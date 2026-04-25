@@ -1,4 +1,4 @@
-import styles from "@/app/page.module.css";
+import styles from "@/app/styles/header.module.css";
 import CanvasContent from "@/components/layout/CanvasContent";
 
 export default function TopCanvas({ isOpen, closeCanvas, nutritionSummary }) {

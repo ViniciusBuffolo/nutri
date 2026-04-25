@@ -5,7 +5,8 @@
       "@data/*": ["../../packages/data/*"],
       "@theme/*": ["../../packages/theme/*"],
       "@core/*": ["../../packages/core/*"],
-      "@utils/*": ["../../packages/utils/*"]
+      "@utils/*": ["../../packages/utils/*"],
+      "@ui/*": ["../../packages/ui/*"]
     }
   }
 }

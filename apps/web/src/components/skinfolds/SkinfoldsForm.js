@@ -1,9 +1,8 @@
 "use client";
 
-import styles from "@/app/page.module.css";
-import Card from "@/components/shared/Card";
-import Button from "@/components/shared/Button";
-import SectionTitle from "@/components/shared/SectionTitle";
+import Card from "@ui/shared/Card";
+import Button from "@ui/shared/Button";
+import SectionTitle from "@ui/shared/SectionTitle";
 
 function getProtocolConfig(age, sex, protocol) {
   const ageNumber = Number(age);
@@ -95,105 +94,116 @@ function getProtocolConfig(age, sex, protocol) {
   };
 }
 
-export default function SkinfoldsForm({
-  age,
-  sex,
-  form,
-  onChange,
-  onClear,
-}) {
+export default function SkinfoldsForm({ age, sex, form, onChange, onClear }) {
   const config = getProtocolConfig(age, sex, form.protocol);
 
   return (
-    <Card className={styles.bmiCard}>
-      <div className={styles.bmiHeader}>
+    <Card className="contentCard">
+      <div className="contentCardHeader">
         <SectionTitle
           eyebrow="Health"
           title="Dobras Cutâneas"
           description="Preencha os dados iniciais e as medidas do protocolo."
-          eyebrowClassName={styles.bmiEyebrow}
-          titleClassName={styles.bmiTitle}
-          descriptionClassName={styles.bmiSubtitle}
+          eyebrowClassName="sectionEyebrow"
+          titleClassName="sectionTitle"
+          descriptionClassName="sectionTextMuted"
         />
       </div>
 
-      <div className={styles.calculatorSection}>
-        <div className={styles.calculatorSectionHeader}>
-          <h2 className={styles.calculatorSectionTitle}>Dados Iniciais</h2>
-        </div>
+      <form className="form">
+        <div className="contentCardBody">
+          <div className="formSection">
+            <div className="formSectionHeader">
+              <h2 className="sectionTitle">Dados Iniciais</h2>
+            </div>
 
-        <div className={styles.bmiGrid}>
-          <label className={styles.bmiField}>
-            <span>Idade</span>
-            <input
-              type="number"
-              name="age"
-              placeholder="Ex: 34"
-              value={form.age}
-              onChange={onChange}
-              min="0"
-            />
-          </label>
+            <div className="cardGrid cardGridTwo">
+              <label className="inputGroup cardGridItem">
+                <span>Idade</span>
+                <input
+                  className="inputLine"
+                  type="number"
+                  name="age"
+                  placeholder="Ex: 34"
+                  value={form.age}
+                  onChange={onChange}
+                  min="0"
+                />
+              </label>
 
-          <label className={styles.bmiField}>
-            <span>Sexo</span>
-            <select name="sex" value={form.sex} onChange={onChange}>
-              <option value="male">Homem</option>
-              <option value="female">Mulher</option>
-            </select>
-          </label>
+              <label className="inputGroup cardGridItem">
+                <span>Sexo</span>
+                <select
+                  className="inputLine"
+                  name="sex"
+                  value={form.sex}
+                  onChange={onChange}
+                >
+                  <option value="male">Homem</option>
+                  <option value="female">Mulher</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div className="formSection">
+            <div className="formSectionHeader">
+              <h2 className="sectionTitle">{config.title}</h2>
+              <p className="sectionTextMuted">{config.description}</p>
+            </div>
+
+            {config.allowProtocolChoice ? (
+              <div className="cardGrid cardGridTwo">
+                <label className="inputGroup cardGridItem">
+                  <span>Protocolo</span>
+                  <select
+                    className="inputLine"
+                    name="protocol"
+                    value={form.protocol}
+                    onChange={onChange}
+                  >
+                    <option value="3">3 dobras</option>
+                    <option value="7">7 dobras</option>
+                  </select>
+                </label>
+              </div>
+            ) : null}
+
+            {config.fields.length > 0 ? (
+              <div className="cardGrid cardGridTwo">
+                {config.fields.map((field) => (
+                  <label key={field.name} className="inputGroup cardGridItem">
+                    <span>{field.label}</span>
+                    <input
+                      className="inputLine"
+                      type="number"
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      value={form[field.name] || ""}
+                      onChange={onChange}
+                      min="0"
+                      step="0.1"
+                    />
+                  </label>
+                ))}
+              </div>
+            ) : null}
+          </div>
         </div>
 
         {onClear ? (
-          <div className={styles.bmiActions}>
-            <Button className={styles.bmiSecondaryButton} onClick={onClear}>
-              Limpar dados
+          <div className="contentCardFooter">
+            <Button
+              className="formSecondaryButton"
+              variant="secondary"
+              onClick={onClear}
+              type="button"
+            >
+              Limpar
             </Button>
           </div>
         ) : null}
-      </div>
-
-      <div className={styles.calculatorSection}>
-        <div className={styles.calculatorSectionHeader}>
-          <h2 className={styles.calculatorSectionTitle}>{config.title}</h2>
-          <p className={styles.calculatorSectionText}>{config.description}</p>
-        </div>
-
-        {config.allowProtocolChoice && (
-          <div className={styles.bmiGrid}>
-            <label className={styles.bmiField}>
-              <span>Protocolo</span>
-              <select name="protocol" value={form.protocol} onChange={onChange}>
-                <option value="3">3 dobras</option>
-                <option value="7">7 dobras</option>
-              </select>
-            </label>
-          </div>
-        )}
-
-        {config.fields.length > 0 ? (
-          <div className={styles.bmiGrid}>
-            {config.fields.map((field) => (
-              <label key={field.name} className={styles.bmiField}>
-                <span>{field.label}</span>
-                <input
-                  type="number"
-                  name={field.name}
-                  placeholder={field.placeholder}
-                  value={form[field.name] || ""}
-                  onChange={onChange}
-                  min="0"
-                  step="0.1"
-                />
-              </label>
-            ))}
-          </div>
-        ) : (
-          <p className={styles.bmiHelperText}>
-            Preencha idade e sexo para continuar.
-          </p>
-        )}
-      </div>
+      </form>
     </Card>
   );
 }

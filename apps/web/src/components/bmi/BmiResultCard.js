@@ -1,67 +1,96 @@
 "use client";
 
-import styles from "@/app/page.module.css";
-import Card from "@/components/shared/Card";
-import Badge from "@/components/shared/Badge";
+import Card from "@ui/shared/Card";
+import Badge from "@ui/shared/Badge";
 import BmiGauge from "@/components/bmi/BmiGauge";
 
 function getToneClass(tone) {
   switch (tone) {
     case "under":
-      return styles.bmiToneUnder;
+      return "metricToneInfo";
     case "normal":
-      return styles.bmiToneNormal;
+      return "metricToneSuccess";
     case "over":
-      return styles.bmiToneOver;
+      return "metricToneWarning";
     case "obesity1":
-      return styles.bmiToneObesity1;
+      return "metricToneOrange";
     case "obesity2":
-      return styles.bmiToneObesity2;
+      return "metricToneDanger";
     case "obesity3":
-      return styles.bmiToneObesity3;
+      return "metricToneCritical";
     default:
       return "";
   }
 }
 
+function getGroupLabel(group) {
+  switch (group) {
+    case "child":
+      return "Criança / Adolescente";
+    case "adult":
+      return "Adulto";
+    case "older":
+      return "Idoso";
+    default:
+      return "";
+  }
+}
+
+function getBadgeVariant(tone) {
+  switch (tone) {
+    case "normal":
+      return "success";
+    case "under":
+    case "over":
+    case "obesity1":
+    case "obesity2":
+    case "obesity3":
+      return "neutral";
+    default:
+      return "default";
+  }
+}
+
 export default function BmiResultCard({ result }) {
   const resultToneClass = result ? getToneClass(result.tone) : "";
+  const groupLabel = result ? getGroupLabel(result.group) : "";
 
   return (
-    <Card className={`${styles.bmiResultCard} ${resultToneClass}`}>
-      <p className={styles.bmiEyebrow}>Resultado de IMC</p>
+    <Card className={`contentCard ${resultToneClass}`}>
+      <p className="sectionEyebrow">Resultado de IMC</p>
 
       {result ? (
         <>
-          <div className={styles.bmiResultTop}>
+          <div className="metricHeader">
             <div>
-              <div className={styles.bmiValue}>{result.bmi}</div>
-              <div className={styles.bmiRangeText}>
-                Faixa atual: {result.range}
-              </div>
+              <div className="metricValue">{result.bmi}</div>
+              <div className="metricRangeText">Faixa atual: {result.range}</div>
             </div>
 
-            <div className={styles.bmiStatusBlock}>
-              <Badge className={styles.bmiBadge}>
-                {result.group === "child" && "Criança / Adolescente"}
-                {result.group === "adult" && "Adulto"}
-                {result.group === "older" && "Idoso"}
-              </Badge>
+            <div className="metricStatusBlock">
+              {groupLabel ? (
+                <Badge
+                  className="metricBadge"
+                  variant={getBadgeVariant(result.tone)}
+                >
+                  {groupLabel}
+                </Badge>
+              ) : null}
 
-              <h2 className={styles.bmiResultTitle}>{result.label}</h2>
+              <h2 className="sectionTitle">{result.label}</h2>
             </div>
           </div>
 
           <BmiGauge result={result} />
 
-          <p className={styles.bmiResultText}>{result.shortText}</p>
-          <p className={styles.bmiHelperText}>{result.helperText}</p>
+          <p className="sectionText">{result.shortText}</p>
+          <p className="sectionTextMuted">{result.helperText}</p>
         </>
       ) : (
         <>
-          <div className={styles.bmiEmptyValue}>--</div>
-          <h2 className={styles.bmiResultTitle}>Preencha os dados</h2>
-          <p className={styles.bmiResultText}>
+          <div className="metricEmptyValue">--</div>
+          <h2 className="sectionTitle">Preencha os dados</h2>
+          <p className="sectionTextMuted">
             Informe peso e altura para visualizar o cálculo do IMC.
           </p>
         </>

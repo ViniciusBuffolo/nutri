@@ -1,4 +1,4 @@
-import styles from "@/app/page.module.css";
+import styles from "@/app/styles/header.module.css";
 
 export default function CanvasContent({ nutritionSummary }) {
   if (!nutritionSummary) return null;
