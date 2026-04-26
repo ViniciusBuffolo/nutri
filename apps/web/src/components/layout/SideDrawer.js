@@ -1,7 +1,32 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import {
+  Home,
+  User,
+  Info,
+  ClipboardList,
+  Mail,
+  Wallet,
+  Newspaper,
+  BarChart3,
+  X,
+  Sun,
+  Moon,
+} from "lucide-react";
 import styles from "@/app/styles/header.module.css";
+
+const menuItems = [
+  { href: "/", label: "Home", icon: Home },
+  { href: "/profile", label: "Profile", icon: User },
+  { href: "/about", label: "About us", icon: Info },
+  { href: "/plans", label: "Plans", icon: ClipboardList },
+  { href: "/messages", label: "Message", icon: Mail, badge: "1" },
+  { href: "/payment", label: "Payment", icon: Wallet },
+  { href: "/reports", label: "Reports", icon: Newspaper },
+  { href: "/statistics", label: "Statistic", icon: BarChart3 },
+];
 
 export default function SideDrawer({ isOpen, onClose }) {
   return (
@@ -20,8 +45,19 @@ export default function SideDrawer({ isOpen, onClose }) {
           isOpen ? styles.sideDrawerOpen : ""
         }`}
       >
-        <div className={styles.drawerHeader}>
-          <strong>Menu</strong>
+        <div className={styles.drawerProfile}>
+          <div>
+            <strong>Gabrielle Irene</strong>
+            <span>5.2M Followers</span>
+          </div>
+
+          <Image
+            src="/avatar.jpg"
+            alt="Gabrielle Irene"
+            width={42}
+            height={42}
+            className={styles.drawerAvatar}
+          />
 
           <button
             type="button"
@@ -29,35 +65,38 @@ export default function SideDrawer({ isOpen, onClose }) {
             onClick={onClose}
             aria-label="Fechar menu lateral"
           >
-            ×
+            <X size={18} />
           </button>
         </div>
 
+        <div className={styles.drawerThemeToggle} aria-label="Theme mode">
+          <Sun size={12} className={styles.drawerThemeIcon} />
+
+          <span className={styles.drawerThemeTrack}>
+            <span className={styles.drawerThemeThumb} />
+          </span>
+
+          <Moon size={12} className={styles.drawerThemeIcon} />
+        </div>
+
         <nav className={styles.drawerNav}>
-          <Link href="/" onClick={onClose}>
-            Home
-          </Link>
+          {menuItems.map((item) => {
+            const Icon = item.icon;
 
-          <Link href="/dashboard" onClick={onClose}>
-            Dashboard
-          </Link>
+            return (
+              <Link key={item.href} href={item.href} onClick={onClose}>
+                <Icon size={18} />
+                <span>{item.label}</span>
 
-          <Link href="/evaluations" onClick={onClose}>
-            Evaluations
-          </Link>
-
-          <Link href="/patients" onClick={onClose}>
-            Patients
-          </Link>
-
-          <Link href="/appointments" onClick={onClose}>
-            Appointments
-          </Link>
-
-          <Link href="/settings" onClick={onClose}>
-            Settings
-          </Link>
+                {item.badge ? (
+                  <small className={styles.drawerBadge}>{item.badge}</small>
+                ) : null}
+              </Link>
+            );
+          })}
         </nav>
+
+        <p className={styles.drawerVersion}>App Version - V2.10</p>
       </aside>
     </>
   );

@@ -321,12 +321,19 @@
   position: fixed;
   top: 0;
   right: 0;
+  left: auto;
   z-index: 1100;
-  width: min(82vw, 320px);
+
+  width: min(78vw, 280px);
   height: 100dvh;
-  padding: var(--space-6);
+  padding: 28px 24px calc(110px + env(safe-area-inset-bottom));
+
+  display: flex;
+  flex-direction: column;
+
   background: var(--card);
-  box-shadow: -20px 0 60px rgba(49, 80, 62, 0.18);
+  box-shadow: -20px 0 60px rgba(49, 80, 62, 0.16);
+
   transform: translateX(100%);
   transition: transform var(--transition-layout);
 }
@@ -335,45 +342,156 @@
   transform: translateX(0);
 }
 
-.drawerHeader {
+.drawerProfile {
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: var(--space-5);
-  border-bottom: 1px solid var(--border);
+  gap: 12px;
+
+  margin-bottom: 42px;
+}
+
+.drawerProfile strong {
+  display: block;
   color: var(--foreground);
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.drawerProfile span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.drawerAvatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .drawerCloseButton {
-  width: 36px;
-  height: 36px;
+  position: absolute;
+  top: -16px;
+  right: -12px;
+
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-radius: var(--radius-pill);
   background: var(--primary-soft);
   color: var(--primary-text);
-  font-size: 24px;
-  line-height: 1;
   cursor: pointer;
 }
 
 .drawerNav {
-  margin-top: var(--space-6);
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: 24px;
 }
 
 .drawerNav a {
-  padding: var(--space-4);
-  border-radius: var(--radius-md);
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
   color: var(--foreground);
-  background: var(--card-muted);
-  font-size: 0.95rem;
-  font-weight: 700;
+  background: transparent;
+
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.drawerNav a svg {
+  flex: 0 0 auto;
+  color: var(--foreground);
+  stroke-width: 2;
 }
 
 .drawerNav a:hover {
   color: var(--primary-text);
-  background: var(--primary-soft-2);
+}
+
+.drawerNav a:hover svg {
+  color: var(--primary-text);
+}
+
+.drawerBadge {
+  margin-left: auto;
+
+  width: 18px;
+  height: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: var(--radius-pill);
+  background: #20c8df;
+  color: var(--white);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.drawerVersion {
+  margin-top: auto;
+  padding-top: 32px;
+  text-align: right;
+  color: var(--foreground);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.drawerThemeToggle {
+  width: fit-content;
+  margin: -28px 0 42px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.drawerThemeIcon {
+  color: var(--primary-text);
+  stroke-width: 2.5;
+}
+
+.drawerThemeTrack {
+  position: relative;
+
+  width: 24px;
+  height: 12px;
+
+  border-radius: var(--radius-pill);
+  background: #dfe5ec;
+}
+
+.drawerThemeThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+
+  width: 8px;
+  height: 8px;
+
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  box-shadow: 0 1px 3px rgba(49, 80, 62, 0.18);
 }
 
 /* =========================

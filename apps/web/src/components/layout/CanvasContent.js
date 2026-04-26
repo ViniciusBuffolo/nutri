@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Bell, Menu, ChevronDown, ChevronUp } from "lucide-react";
+import { Bell, Menu, ChevronDown, ChevronUp, ArrowBigDownDash, ArrowBigUpDash } from "lucide-react";
 import styles from "@/app/styles/header.module.css";
 
 export default function CanvasContent({
@@ -150,7 +150,7 @@ export default function CanvasContent({
           onClick={handleToggleCanvas}
           aria-label={isOpen ? "Fechar painel superior" : "Abrir painel superior"}
         >
-          {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+          {isOpen ? <ArrowBigUpDash size={20} /> : <ArrowBigDownDash size={20} />}
         </button>
       )}
     </>
