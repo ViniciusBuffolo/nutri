@@ -74,7 +74,7 @@ export default function GridDemoPage() {
 
         {/* COLUMN */}
         <h2>Column Layout</h2>
-        <div className="cardGrid cardGridTwo">
+        <div className="cardGrid cardGridColumnLayout">
           <DemoCard title="Left" />
 
           <div className="cardGridColumn">
