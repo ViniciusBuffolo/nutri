@@ -2,9 +2,14 @@ import styles from "@/app/styles/header.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function TopBar({ onOpen }) {
+export default function TopBar({ onOpen, onOpenDrawer }) {
   function handleLogoClick(event) {
     event.stopPropagation();
+  }
+
+  function handleMenuClick(event) {
+    event.stopPropagation();
+    onOpenDrawer?.();
   }
 
   return (
@@ -29,6 +34,17 @@ export default function TopBar({ onOpen }) {
           priority
         />
       </Link>
+
+      <button
+        type="button"
+        className={styles.topBarMenuButton}
+        onClick={handleMenuClick}
+        aria-label="Abrir menu lateral"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
     </button>
   );
 }
