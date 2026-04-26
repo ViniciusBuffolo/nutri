@@ -11,12 +11,14 @@
 
 html,
 body {
+  width: 100%;
   max-width: 100vw;
+  min-height: 100%;
   overflow-x: hidden;
 }
 
 body {
-  min-height: 100%;
+  min-height: 100dvh;
   color: var(--foreground);
   background: var(--background);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
@@ -41,10 +43,11 @@ a {
 
 /* #region Page Layout */
 .page {
-  min-height: 100vh;
+  width: 100%;
+  min-height: 100dvh;
   background: var(--background);
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -67,12 +70,17 @@ a {
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  padding-top: var(--top-canvas-closed-height);
   padding-bottom: var(--bottom-nav-space);
-  transition: margin-top var(--transition-layout);
+  transition: padding-top var(--transition-layout);
 }
 
 .mainShifted {
-  margin-top: var(--canvas-open-height);
+  padding-top: var(--top-canvas-height);
+}
+
+.mainDashboardShifted {
+  padding-top: var(--top-canvas-dashboard-height);
 }
 
 .content {
@@ -216,11 +224,11 @@ a {
 
 .cardCenterWrap {
   width: 100%;
-  min-height: calc(100vh - var(--page-header-height));
+  min-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-8) var(--space-5) var(--card-center-bottom-space);
+  padding: var(--space-6) var(--space-5);
 }
 
 .cardCenterSmall {
@@ -447,6 +455,67 @@ a {
 }
 /* #endregion Forms */
 
+/* #region Dashboard */
+.dashboardStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.quickAccessGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+.quickAccessItem {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--foreground);
+  font-size: var(--font-sm);
+  cursor: pointer;
+}
+
+.quickAccessIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-pill);
+  background: var(--card-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboardFeature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.dashboardFeatureIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  background: var(--primary-soft);
+  color: var(--primary-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboardScheduleButton {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+/* #endregion Dashboard */
+
 /* #region Responsive */
 @media (max-width: 1100px) {
   .cardGridThree {
@@ -479,6 +548,11 @@ a {
   .metricValue,
   .metricEmptyValue {
     font-size: var(--font-metric-mobile);
+  }
+  .cardCenterWrap {
+    align-items: flex-start;
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-5);
   }
 }
 /* #endregion Responsive */

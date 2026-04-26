@@ -113,6 +113,9 @@
   --canvas-circle-column: 210px;
   --canvas-stats-max-width: 520px;
   --canvas-macros-max-width: 480px;
+  
+  --top-canvas-closed-height: 84px;
+  --top-canvas-dashboard-height: 120px;
 
   /* =========================
      Forms

@@ -47,7 +47,7 @@ export default function LoginPage() {
   }
 
   return (
-    <AppLayout>
+    <AppLayout canvasInitiallyOpen={false} canvasVariant="auth">
       <section className="cardCenterWrap">
         <div className="cardCenterSmall">
           <AuthCard

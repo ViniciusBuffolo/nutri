@@ -1,24 +1,49 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import TopCanvas from "@/components/layout/TopCanvas";
-import TopBar from "@/components/layout/TopBar";
-import SideDrawer from "@/components/layout/SideDrawer";
 import BottomNav from "@/components/layout/BottomNav";
-import { nutritionSummary } from "@data/homeData";
+import SideDrawer from "@/components/layout/SideDrawer";
+import { nutritionSummary as defaultNutritionSummary } from "@data/homeData";
 
-export default function AppLayout({ children, canvasInitiallyOpen = false }) {
-  const [isOpen, setIsOpen] = useState(canvasInitiallyOpen);
+function getCanvasVariant(pathname, canvasVariant) {
+  if (canvasVariant) return canvasVariant;
+
+  if (pathname?.startsWith("/dashboard")) return "dashboard";
+  if (pathname?.startsWith("/login")) return "auth";
+  if (pathname?.startsWith("/register")) return "auth";
+  if (pathname?.startsWith("/forgot-password")) return "auth";
+  if (pathname?.startsWith("/reset-password")) return "auth";
+  if (pathname?.startsWith("/verify-email")) return "auth";
+  if (pathname?.startsWith("/onboarding")) return "auth";
+
+  return "home";
+}
+
+function AppLayoutContent({
+  children,
+  nutritionSummary = defaultNutritionSummary,
+  canvasVariant,
+  user = null,
+  canvasInitiallyOpen = false,
+}) {
+  const pathname = usePathname();
+  const variant = getCanvasVariant(pathname, canvasVariant);
+  const isAuth = variant === "auth";
+
+  const [isCanvasOpen, setIsCanvasOpen] = useState(
+    !isAuth && canvasInitiallyOpen,
+  );
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const touchStartX = useRef(null);
-
   function openCanvas() {
-    setIsOpen(true);
+    if (isAuth) return;
+    setIsCanvasOpen(true);
   }
 
   function closeCanvas() {
-    setIsOpen(false);
+    setIsCanvasOpen(false);
   }
 
   function openDrawer() {
@@ -29,49 +54,72 @@ export default function AppLayout({ children, canvasInitiallyOpen = false }) {
     setIsDrawerOpen(false);
   }
 
-  function handleTouchStart(event) {
-    touchStartX.current = event.touches[0].clientX;
-  }
+  useEffect(() => {
+    let startX = 0;
 
-  function handleTouchEnd(event) {
-    if (touchStartX.current === null) return;
-
-    const endX = event.changedTouches[0].clientX;
-    const distance = touchStartX.current - endX;
-    const startedNearRight = touchStartX.current > window.innerWidth - 48;
-
-    if (startedNearRight && distance > 60) {
-      openDrawer();
+    function handleTouchStart(event) {
+      startX = event.touches[0].clientX;
     }
 
-    touchStartX.current = null;
-  }
+    function handleTouchMove(event) {
+      const currentX = event.touches[0].clientX;
+      const isStartingFromRightEdge = startX > window.innerWidth - 48;
+      const isSwipingLeft = currentX < startX - 40;
+
+      if (isStartingFromRightEdge && isSwipingLeft) {
+        openDrawer();
+      }
+    }
+
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchmove", handleTouchMove);
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, []);
 
   return (
-    <main
-      className="page"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
+    <div className="page">
       <div className="backgroundOverlay" />
 
-      <TopCanvas
-        isOpen={isOpen}
-        closeCanvas={closeCanvas}
-        nutritionSummary={nutritionSummary}
-      />
+      {!isAuth && (
+        <>
+          <TopCanvas
+            isOpen={isCanvasOpen}
+            openCanvas={openCanvas}
+            closeCanvas={closeCanvas}
+            nutritionSummary={nutritionSummary}
+            user={user}
+            variant={variant}
+            onOpenDrawer={openDrawer}
+          />
+        </>
+      )}
 
-      <section className={`mainContent ${isOpen ? "mainShifted" : ""}`}>
-        {!isOpen && (
-          <TopBar onOpen={openCanvas} onOpenDrawer={openDrawer} />
-        )}
-
+      <main
+        className={`mainContent ${
+          isCanvasOpen && variant === "home" ? "mainShifted" : ""
+        } ${
+          isCanvasOpen && variant === "dashboard"
+            ? "mainDashboardShifted"
+            : ""
+        }`}
+      >
         {children}
-      </section>
+      </main>
+
+      {/* {!isAuth && <BottomNav />} */}
+      <BottomNav />
 
       <SideDrawer isOpen={isDrawerOpen} onClose={closeDrawer} />
-
-      <BottomNav />
-    </main>
+    </div>
   );
+}
+
+export default function AppLayout(props) {
+  const pathname = usePathname();
+
+  return <AppLayoutContent key={pathname} {...props} />;
 }

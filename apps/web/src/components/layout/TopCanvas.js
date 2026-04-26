@@ -1,20 +1,31 @@
 import styles from "@/app/styles/header.module.css";
 import CanvasContent from "@/components/layout/CanvasContent";
 
-export default function TopCanvas({ isOpen, closeCanvas, nutritionSummary }) {
+export default function TopCanvas({
+  isOpen,
+  openCanvas,
+  closeCanvas,
+  nutritionSummary,
+  user,
+  variant = "home",
+  onOpenDrawer,
+}) {
   return (
-    <div className={`${styles.topCanvas} ${isOpen ? styles.open : ""}`}>
+    <div
+      className={`${styles.topCanvas} ${
+        variant === "dashboard" ? styles.topCanvasDashboard : styles.topCanvasHome
+      } ${isOpen ? styles.open : ""}`}
+    >
       <div className={styles.heroInner}>
-        <CanvasContent nutritionSummary={nutritionSummary} />
-
-        <button
-          type="button"
-          className={styles.arrowBtn}
-          onClick={closeCanvas}
-          aria-label="Fechar painel"
-        >
-          <span className={`${styles.chevronIcon} ${styles.chevronUp}`} />
-        </button>
+        <CanvasContent
+          nutritionSummary={nutritionSummary}
+          user={user}
+          variant={variant}
+          isOpen={isOpen}
+          openCanvas={openCanvas}
+          closeCanvas={closeCanvas}
+          onOpenDrawer={onOpenDrawer}
+        />
       </div>
     </div>
   );

@@ -6,186 +6,179 @@
   position: fixed;
   inset: 0 0 auto;
   width: 100%;
-  height: 0;
-  overflow: hidden;
+  height: var(--top-canvas-closed-height);
+  overflow: visible;
   z-index: 1000;
   background: transparent;
   transition: height var(--transition-layout);
 }
 
-.open {
+.topCanvasHome.open {
   height: var(--top-canvas-height);
+}
+
+.topCanvasDashboard.open {
+  height: var(--top-canvas-dashboard-height);
 }
 
 .heroInner {
   position: relative;
   width: 100%;
   height: 100%;
-  padding: var(--top-canvas-padding-top) var(--top-canvas-padding-x)
-    var(--top-canvas-padding-bottom);
+  padding: 18px var(--top-canvas-padding-x) 34px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+
   color: var(--white);
   background: linear-gradient(
     180deg,
     var(--hero-start) 0%,
     var(--hero-end) 100%
   );
-  clip-path: ellipse(100% 70% at 50% 30%);
-  -webkit-clip-path: ellipse(100% 70% at 50% 30%);
+
+  overflow: visible;
 }
 
 /* =========================
-   Top Bar
+   Canvas Header
 ========================= */
 
-.topBar {
-  position: relative;
+.canvasHeader {
   width: 100%;
-  height: var(--top-bar-height);
-  padding: 0 var(--top-bar-padding-x);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  border: none;
-  cursor: pointer;
-}
-
-.topBarHero {
-  color: var(--white);
-  background: linear-gradient(
-    180deg,
-    var(--hero-start) 0%,
-    var(--hero-end) 100%
-  );
-  box-shadow: var(--shadow-top-bar);
-}
-
-.topBarTitle {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: inherit;
-}
-
-.topBarLogoLink {
-  display: flex;
-  align-items: center;
-}
-
-.topBarLogo {
-  width: auto;
-  height: var(--top-bar-logo-height);
-  display: block;
-}
-
-.topBarMenuButton {
-  margin-left: auto;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-pill);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  border: none;
-  background: rgba(255, 255, 255, 0.24);
-  cursor: pointer;
-}
-
-.topBarMenuButton span {
-  width: 24px;
-  height: 3px;
-  border-radius: var(--radius-pill);
-  background: var(--white);
-}
-
-/* =========================
-   Side Drawer
-========================= */
-
-.drawerOverlay {
-  position: fixed;
-  inset: 0;
-  z-index: 1090;
-  border: none;
-  background: rgba(0, 0, 0, 0.42);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition-layout);
-}
-
-.drawerOverlayOpen {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.sideDrawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 1100;
-  width: min(82vw, 320px);
-  height: 100dvh;
-  padding: var(--space-6);
-  background: var(--card);
-  box-shadow: -20px 0 60px rgba(49, 80, 62, 0.18);
-  transform: translateX(100%);
-  transition: transform var(--transition-layout);
-}
-
-.sideDrawerOpen {
-  transform: translateX(0);
-}
-
-.drawerHeader {
+  min-height: 54px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: var(--space-5);
-  border-bottom: 1px solid var(--border);
-  color: var(--foreground);
+  gap: var(--space-4);
 }
 
-.drawerCloseButton {
+.canvasHeaderLeft {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.canvasHeaderCenter {
+  flex: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvasHeaderActions {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.canvasHeaderActions button {
   width: 36px;
   height: 36px;
-  border: none;
   border-radius: var(--radius-pill);
-  background: var(--primary-soft);
-  color: var(--primary-text);
-  font-size: 24px;
-  line-height: 1;
+  background: rgba(255, 255, 255, 0.28);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
-.drawerNav {
-  margin-top: var(--space-6);
+.canvasLogoButton {
+  background: transparent;
+  cursor: pointer;
+}
+
+.canvasLogoLink {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  align-items: center;
+  width: fit-content;
 }
 
-.drawerNav a {
-  padding: var(--space-4);
-  border-radius: var(--radius-md);
-  color: var(--foreground);
-  background: var(--card-muted);
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-decoration: none;
+.canvasLogo {
+  width: auto;
+  height: 32px;
+  display: block;
 }
 
-.drawerNav a:hover {
-  color: var(--primary-text);
-  background: var(--primary-soft-2);
+@media (min-width: 768px) {
+  .canvasHeaderCenter {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .canvasHeader {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
+
+  .canvasHeaderLeft {
+    grid-column: 1;
+    justify-content: flex-start;
+  }
+
+  .canvasHeaderActions {
+    grid-column: 3;
+    justify-content: flex-end;
+  }
 }
 
 /* =========================
-   Canvas Content
+   Canvas Toggle
 ========================= */
+
+.canvasToggleButton {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  z-index: 5;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--primary-text);
+  background: rgba(255, 255, 255, 0.28);
+  border: 2px solid rgba(46, 150, 106, 0.42);
+  border-radius: var(--radius-pill);
+
+  transform: translateX(-50%);
+  cursor: pointer;
+
+  transition:
+    background var(--transition-layout),
+    transform var(--transition-layout),
+    color var(--transition-layout);
+}
+
+.canvasToggleButton:hover {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.canvasToggleButtonOpen {
+  bottom: 18px;
+}
+
+/* =========================
+   Home Canvas Content
+========================= */
+
+.homeCanvasBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: canvasFadeIn 0.35s ease both;
+}
 
 .plan {
   margin: var(--space-2) 0 var(--space-6);
@@ -251,7 +244,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
   background: transparent;
   color: var(--white);
   cursor: pointer;
@@ -263,10 +255,139 @@
   display: inline-block;
   border-right: var(--chevron-border-width) solid currentColor;
   border-bottom: var(--chevron-border-width) solid currentColor;
-  box-sizing: border-box;
   transform: rotate(45deg);
 }
 
 .chevronUp {
   transform: rotate(-135deg);
+}
+
+/* =========================
+   Dashboard Canvas
+========================= */
+
+.dashboardUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboardAvatar {
+  width: 54px;
+  height: 54px;
+  border: 2px solid var(--white);
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.dashboardGreeting {
+  color: var(--white);
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.dashboardUserInfo h1 {
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+/* =========================
+   Side Drawer
+========================= */
+
+.drawerOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1090;
+  background: rgba(0, 0, 0, 0.42);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-layout);
+}
+
+.drawerOverlayOpen {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sideDrawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1100;
+  width: min(82vw, 320px);
+  height: 100dvh;
+  padding: var(--space-6);
+  background: var(--card);
+  box-shadow: -20px 0 60px rgba(49, 80, 62, 0.18);
+  transform: translateX(100%);
+  transition: transform var(--transition-layout);
+}
+
+.sideDrawerOpen {
+  transform: translateX(0);
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.drawerCloseButton {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  background: var(--primary-soft);
+  color: var(--primary-text);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.drawerNav {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.drawerNav a {
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  color: var(--foreground);
+  background: var(--card-muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.drawerNav a:hover {
+  color: var(--primary-text);
+  background: var(--primary-soft-2);
+}
+
+/* =========================
+   Animations
+========================= */
+
+@keyframes canvasFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
