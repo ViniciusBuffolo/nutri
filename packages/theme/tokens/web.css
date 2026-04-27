@@ -161,3 +161,22 @@
   ========================= */
   --z-bottom-nav: 1200;
 }
+
+:root[data-theme="dark"] {
+  --background: #111827;
+  --foreground: #f8fafc;
+  --muted: #9ca3af;
+
+  --card: #172033;
+  --card-soft: rgba(23, 32, 51, 0.94);
+  --card-muted: #202b42;
+
+  --primary: #69d3a5;
+  --primary-strong: #56c995;
+  --primary-soft: rgba(105, 211, 165, 0.16);
+  --primary-soft-2: rgba(105, 211, 165, 0.1);
+  --primary-text: #8ee7bd;
+  --primary-muted: #8ca29b;
+
+  --border: rgba(255, 255, 255, 0.08);
+}
